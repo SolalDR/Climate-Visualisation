@@ -1,10 +1,12 @@
 import Country from "./Country"
 import GeoUtil from "./GeoUtil"
+import Event from './Event'
 
 import vertShader from './../glsl/shader.vert'
 import fragShader from './../glsl/shader.frag'
 
-class Earth {
+
+class Earth extends Event {
 
 	static get SIZE(){ return 6371 ;}
 	static get STYLE_POINT(){ return 1 ;}
@@ -12,8 +14,14 @@ class Earth {
 	static get MESS_STATE() {return 3; }
 	static get ORDONATE_STATE() {return 4; }
 
-
 	constructor(args) {
+		super(args)
+
+		// this.eventsAvailable = ['fzef', 'fefze']
+		this.events = {
+			noiseEnd: [] 
+		}
+
 		this.geometry; 
 		this.material;
 		this.mesh; 
@@ -175,13 +183,14 @@ class Earth {
 				this.uniforms.powerNoise.value = 0;
 				this.needNoiseUpdate = false;
 				this.casterHelper.scale.copy(new THREE.Vector3(1, 1, 1));
-				this.dispatchOnNoiseEnd();
+				this.dispatch('noiseEnd');
 			}
 		} else {
 			this.uniforms.powerNoise.value += 0.01; 
 			if(this.uniforms.powerNoise.value > 1) {
 				this.uniforms.powerNoise.value = 1;
 				this.needNoiseUpdate = false;
+				this.dispatch('noiseStart');
 			}
 		}
 	}

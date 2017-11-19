@@ -1,9 +1,14 @@
 class Event {
 
+  constructor() {
+    this.events = [];
+    this.eventsAvailables = [];
+  }
+
   eventExist(event, callback){
     var exist = false; 
     if( this.events[event] ) {
-      for(i=0; i<this.events[event].length; i++){
+      for(var i=0; i<this.events[event].length; i++){
         if( this.events[event] == callback ){
           exist = true; 
         }
@@ -14,7 +19,7 @@ class Event {
 
   dispatch(event){
     if( this.events[event] && this.events[event].length ){
-      for(i=0; i<this.events[event].length; i++ ){
+      for(var i=0; i<this.events[event].length; i++ ){
         var callback = this.events[event][i];
         callback.call(this);
       }
@@ -41,3 +46,5 @@ class Event {
     }
   }
 }
+
+export default Event;

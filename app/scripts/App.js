@@ -45,7 +45,7 @@ export default class App {
         this.earth.initObject3d();
         this.scene.add(this.earth.mesh);
         this.blob = new Blob(this.scene);
-        this.earth.onNoiseEnd(() => {
+        this.earth.on('noiseEnd', () => {
             this.blob.toScale(1, 10);
         })
     }
