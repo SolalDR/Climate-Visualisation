@@ -1,5 +1,7 @@
 uniform float u_time;
-uniform float rat;
+uniform float u_rat;
+uniform float u_radius;
+
 //varying vec2 vUv;
 
 // Simplex 2D noise
@@ -95,9 +97,9 @@ varying vec4 color;
 
 void main() {
 	//vUv = ;
-	color = vec4(0.65, 0.815, 0.894, .6);
+	color = vec4(0.65, 0.815, 0.894, .7);
 
 	gl_PointSize = 4.0;
-	vec3 newPosition = snoise(position/3. + u_time/10.) * position/rat + position;
+	vec3 newPosition = (snoise(position/3. + u_time/10.) * position/u_rat + position)*u_radius;
     gl_Position = projectionMatrix * modelViewMatrix * vec4( newPosition, 1.0);    
 }

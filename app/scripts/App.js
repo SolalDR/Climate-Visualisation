@@ -1,117 +1,140 @@
-// example import asset
-// import imgPath from './assets/img.jpg';
-
 import earth from "./../data/europe.json"; 
 import datas from "./../data/elevation.js";
 
-import vertShader from './../glsl/shader.vert'
-import fragShader from './../glsl/shader.frag'
-
-import coreVertex from './../glsl/shader-core.vert'
-import coreFragment from './../glsl/shader-core.frag'
-
+import Helper from './Helper'; 
+import Blob from './Blob';
 import Earth from "./Earth";
 import OrbitControls from 'three/examples/js/controls/OrbitControls'
+import Projector from 'three/examples/js/renderers/Projector'
 
 export default class App {
-    adaptData() {
-        var data = [];
-        for(var i = 0; i < datas.length; i++) {
-            if(datas[i][2] == 1) {
-                data.push(datas[i]);
-            }
-            if(datas[i][2] == 0) {
-                console.log(datas[i]);
-            }
-        }
-        for(var i=0; i<data.length; i++){
-            datas.push([ data[i][0], data[i][1], 0 ])
-        }
-        
-    }
 
     constructor() {
+        this.counter = 0
+    
+        this.initScene();       // scene, renderer, camera & control
+        this.initEarth();       // earth     
+        this.initUi();          // HTML Composant
+        this.initEvents();      // Events (mousemove, resize)
+        this.initRaycaster();   // Raycaster
+
+        this.renderer.animate( this.render.bind(this) );
+    }
+
+    ///////////////////////////////////
+    //      INITIALISATION
+    ///////////////////////////////////
+
+    initUi() {
+        this.coordDisplay = document.getElementById("coord-display");
+    }
+
+    initEvents() {
+        window.addEventListener('resize', this.onWindowResize.bind(this), false);
+        window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
+        this.onWindowResize();
+    }
+
+    initEarth(){
+        this.earth = new Earth({
+            size: 5,
+            datasType: 'raw', // can be geojson
+            datas: datas // raw data
+            //datas: earth, // Geogjaon
+        });
+        this.earth.initObject3d();
+        this.scene.add(this.earth.mesh);
+        this.blob = new Blob(this.scene);
+        this.earth.onNoiseEnd(() => {
+            this.blob.toScale(1, 10);
+        })
+    }
+
+    initScene() {
         this.container = document.querySelector( '#main' );
-    	document.body.appendChild( this.container );
+        document.body.appendChild( this.container );
+
+        this.scene = new THREE.Scene();
+        this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: 1 } );
+        this.renderer.setClearColor( 0x000000, 0 );
+        this.renderer.setPixelRatio( window.devicePixelRatio );
+        this.renderer.setSize( window.innerWidth, window.innerHeight );
+        this.container.appendChild( this.renderer.domElement );
 
         this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
         this.camera.position.z = 15;
 
-    	this.scene = new THREE.Scene();
-        this.counter = 0; 
-
-        var directionalLight = new THREE.DirectionalLight( 0xffffff, 0.5 );
-        this.scene.add( directionalLight );
-
-        var uniforms = { u_time: { type: "f", value: 0 }, rat: { type: "f", value: 5.} }
-        let geometry = new THREE.SphereGeometry( 3, 32, 32 );
-        this.material = new THREE.ShaderMaterial({
-            uniforms: uniforms,
-            vertexShader: coreVertex,
-            fragmentShader: coreFragment,
-            transparent: true,
-        });
-
-        var uniforms2 = { u_time: { type: "f", value: 0 }, rat: { type: "f", value: 10.} }
-        this.material2 = new THREE.ShaderMaterial({
-            uniforms: uniforms2,
-            vertexShader: coreVertex,
-            fragmentShader: coreFragment,
-            transparent: true,
-        });
-
-        //this.adaptData()
-
-    	this.mesh = new THREE.Mesh( geometry, this.material );
-        this.mesh2 = new THREE.Mesh( geometry, this.material2 );
-    	this.scene.add( this.mesh );
-        this.scene.add( this.mesh2 );
-
-    	this.renderer = new THREE.WebGLRenderer( { antialias: true, alpha: 1 } );
-        this.renderer.setClearColor( 0x000000, 0 );
-    	this.renderer.setPixelRatio( window.devicePixelRatio );
-    	this.renderer.setSize( window.innerWidth, window.innerHeight );
-    	this.container.appendChild( this.renderer.domElement );
         this.controls = new THREE.OrbitControls( this.camera );
         this.controls.update();
-    	
-        window.addEventListener('resize', this.onWindowResize.bind(this), false);
-        this.onWindowResize();
-        this.init();
-        this.renderer.animate( this.render.bind(this) );
     }
 
-    init(){
+    initRaycaster() {
+        this.raycaster = new THREE.Raycaster();
+        this.mouse = new THREE.Vector2();
 
-        this.earth = new Earth({
-            size: 5,
-            datasType: 'raw', // can be geojson
-            datas: datas, // raw data
-            //datas: earth, // Geogjaon
-            shaders: {
-                fragment: fragShader,
-                vertex: vertShader
-            }
-        });
-        this.earth.initObject3d();
-        this.scene.add(this.earth.mesh);
-        
+        this.earth.createCasterHelper();
+        this.scene.add(this.earth.casterHelper);
     }
+
+    initCastLine() {
+        var material = new THREE.LineBasicMaterial({ color: 0x000000 });
+        var geometry = new THREE.Geometry();
+        geometry.vertices.push( new THREE.Vector3( -10, 0, 0 ), new THREE.Vector3( -10, 0, 0 ) );
+
+        this.castLine = new THREE.Line( geometry, material );
+        this.scene.add( this.castLine );
+    }
+
+    ///////////////////////////////////
+    //              RAF
+    ///////////////////////////////////
 
     render() {
         this.counter += 0.1;
-        this.earth.update();
-        this.material.uniforms.needsUpdate = true;
-        this.material.uniforms.u_time.value = this.counter;
+        this.raycaster.setFromCamera( this.mouse, this.camera );
 
-        this.material2.uniforms.needsUpdate = true;
-        this.material2.uniforms.u_time.value = this.counter;
+        this.mouseCall();
+
+        this.blob.update(this.counter)
+        this.earth.update(this.counter, this.target);
 
     	this.renderer.render( this.scene, this.camera );
     }
 
-    onWindowResize() {
 
+    ///////////////////////////////////
+    //              Events
+    ///////////////////////////////////
+
+    mouseCall() {
+        // calculate objects intersecting the picking ray
+        var intersects = this.raycaster.intersectObjects( this.scene.children );
+        for(var i=0; i<intersects.length; i++) {
+            if(intersects[i].object.name == "CasterTarget") {
+
+                this.target = new THREE.Vector3()
+                .copy(intersects[i].point)
+                .applyAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI/2 )
+                .applyAxisAngle( new THREE.Vector3( 0, 0, 1 ), -this.earth.mesh.rotation.y );
+                    
+                var coord = this.earth.getGeoCoord(this.target); 
+                this.coordDisplay.innerHTML = Math.floor(coord.lon*10)/10+ " | "+Math.floor(coord.lat*10)/10
+
+                if(this.castLine) {
+                    this.castLine.geometry.vertices[1] = intersects[i].point;
+                    this.castLine.geometry.verticesNeedUpdate = true;
+                }
+            }
+        }
+    }
+
+    onMouseMove( event ) {        
+        this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+        this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+    }
+
+
+    onWindowResize() {
     	this.camera.aspect = window.innerWidth / window.innerHeight;
     	this.camera.updateProjectionMatrix();
     	this.renderer.setSize( window.innerWidth, window.innerHeight );

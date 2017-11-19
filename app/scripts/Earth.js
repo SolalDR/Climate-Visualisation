@@ -1,21 +1,23 @@
 import Country from "./Country"
 import GeoUtil from "./GeoUtil"
-// import vertShader from './../glsl/shader.vert'
-// import fragShader from './../glsl/shader.frag'
+
+import vertShader from './../glsl/shader.vert'
+import fragShader from './../glsl/shader.frag'
 
 class Earth {
 
-	static get SIZE(){
-		return 6371;
-	}
+	static get SIZE(){ return 6371 ;}
+	static get STYLE_POINT(){ return 1 ;}
+	static get STYLE_TRIANGLE(){ return 2 ;}
+	static get MESS_STATE() {return 3; }
+	static get ORDONATE_STATE() {return 4; }
+
 
 	constructor(args) {
 		this.geometry; 
 		this.material;
 		this.mesh; 
-		this.uniforms;
-		this.shaders = args.shaders;
-
+		this.shaders = { fragment: fragShader, vertex: vertShader }
 		this.radius = args.size ? args.size : Earth.SIZE;
 		this.ratio = this.radius / Earth.SIZE
 		this.datas = args.datas;
@@ -23,13 +25,41 @@ class Earth {
 		this.countries = [];
 		this.nbPoints = 0;
 		this.vertices = [];
+		this.style = Earth.STYLE_TRIANGLE
+		this.faces = [];
 		this.uniforms = { 
 			u_time: { type: "f", value: 0 },
 			start: { type: "f", value: 0 },
-			end: { type: "f", value: 0 } 
+			end: { type: "f", value: 0 },
+			powerNoise: { type: "f", value: 1},
+			u_target: { type: "vec3", value: new THREE.Vector3(0, 0, 0) }
 		};
-		this.setDatas();
+		this.ordonate = true;
 	}
+
+	set ordonate(ordonate){
+		if(ordonate) {
+			this.animTarget = Earth.ORDONATE_STATE; 
+			this.needNoiseUpdate = true;
+		} else {
+			this.animTarget = Earth.MESS_STATE; 
+			this.needNoiseUpdate = true;
+			this.casterHelper.scale.copy(new THREE.Vector3(0, 0, 0));
+		}
+	}
+
+  createCasterHelper(){
+    var geometry = new THREE.SphereGeometry(5, 32, 32); 
+    var material = new THREE.MeshStandardMaterial({
+        color: 0x000000,
+        transparent: true,
+        opacity: 0
+    }); 
+    this.casterHelper = new THREE.Mesh(geometry, material);
+    this.casterHelper.rotation.x = -Math.PI/2;
+    this.casterHelper.name = "CasterTarget";
+    this.casterHelper.scale.copy(new THREE.Vector3(0, 0, 0));
+  }
 
 	loadGeojson(){
 		for(var i=0; i<this.datas.features.length; i++) {
@@ -50,6 +80,7 @@ class Earth {
 		this.vertices = [];
 		var vec = new THREE.Vector3(0, 0, 0);
 		for(var i=0; i<this.datas.length; i++) {
+			if( this.datas[i][2] == 0 ) this.datas[i][2] += 0;
 			this.vertices.push(GeoUtil.coordToCart({
 				lon: this.datas[i][2],
 				lat: this.datas[i][1]
@@ -57,29 +88,35 @@ class Earth {
 		}
 	}
 
-	setDatas(){
+	createTriangleFromPoint(vec) {
+		var quaternion = new THREE.Quaternion();
+		quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+
+		var vector = new THREE.Vector3( 1, 0, 0 );
+		vector.applyQuaternion( quaternion );
+	}
+
+	getGeoCoord(point) {
+		var result = GeoUtil.cartToCoord(point, this.radius)
+		return result;
+	}
+
+	genVertices(){
 		switch(this.datasType) {
 			case "geojson": this.loadGeojson(); break;
 			case "raw": this.loadRawDatas(); break;
 		}
-		console.log(this.datasType)
+		if( this.style == Earth.STYLE_TRIANGLE ) {
+			var radius = 0.3;
+			var postVertices = [];
+			for(var i=0; i<this.vertices.length; i++) {
+				postVertices.push()
+			}
+		}
 		this.nbPoints = this.vertices.length;
 	}
 
-	findCountryBy(attr, value, single) {
-		if(typeof this.countries[attr] !== "undefined") {
-			var results = [];
-			for(var i=0; i<this.countries.length; i++) {
-				if(this.countries[i][attr] == value) {
-					if ( single ) return this.countries[i];
-					results.push(this.countries[i]);
-				}
-			}
-			return results;
-		}
-		return null;
-	}
-
+	// Gen buffer from vertices
 	genBuffer(){
 		var l = this.nbPoints*3;
 		this.buffer = new Float32Array(l);
@@ -91,30 +128,82 @@ class Earth {
 		return this.buffer;
 	}
 
-	update() {
-		this.mesh.rotation.z += 0.001
+	// Gen geometry
+	genGeometry(){
+		this.geometry = new THREE.BufferGeometry();
+		this.geometry.addAttribute( 'rank', new THREE.BufferAttribute( new Float32Array(this.nbPoints*3).map((i, r) => {return r}), 3))
+		this.geometry.addAttribute( 'position', new THREE.BufferAttribute( this.buffer, 3))
 	}
 
-
-	initObject3d() {
-		if(this.countries && this.shaders) {
-			
-			this.geometry = new THREE.BufferGeometry();
-			this.geometry.addAttribute( 'rank', new THREE.BufferAttribute( new Float32Array(this.nbPoints*3).map((i, r) => {return r}), 3))
-			this.geometry.addAttribute( 'position', new THREE.BufferAttribute( this.genBuffer(), 3))
-		
-	        this.material = new THREE.ShaderMaterial({
-	            uniforms: this.uniforms,
-	            vertexShader: this.shaders.vertex,
-	            fragmentShader: this.shaders.fragment,
-	            transparent: true
-	        });
-
-	        this.mesh = new THREE.Points(this.geometry, this.material);
-	        this.mesh.rotation.x = -Math.PI/2;
-
-	    	return this.mesh; 
+	genFaces(){
+		for(var i=0; i<this.vertices.length; i++) {
+			//this.faces.push(new THREE.Face)
 		}
+	}
+
+	// Gen shader material
+	genMaterial() {
+		this.material = new THREE.ShaderMaterial({
+        uniforms: this.uniforms,
+        vertexShader: this.shaders.vertex,
+        fragmentShader: this.shaders.fragment,
+        transparent: true
+    });
+	}
+
+	// Create Object3D component
+	initObject3d() {
+		this.genVertices();
+		this.genBuffer()
+
+		if(this.buffer && this.shaders) {
+			this.genGeometry();
+			this.genMaterial();
+     
+      this.mesh = new THREE.Points(this.geometry, this.material);
+      this.mesh.rotation.x = -Math.PI/2;
+	    
+	    return this.mesh; 
+		}
+	}
+
+	updateNoisePower() {
+		this.uniforms.needsUpdate = true;
+		if(this.animTarget == Earth.ORDONATE_STATE) {
+			this.uniforms.powerNoise.value -= 0.01;
+			if(this.uniforms.powerNoise.value < 0) {
+				this.uniforms.powerNoise.value = 0;
+				this.needNoiseUpdate = false;
+				this.casterHelper.scale.copy(new THREE.Vector3(1, 1, 1));
+				this.dispatchOnNoiseEnd();
+			}
+		} else {
+			this.uniforms.powerNoise.value += 0.01; 
+			if(this.uniforms.powerNoise.value > 1) {
+				this.uniforms.powerNoise.value = 1;
+				this.needNoiseUpdate = false;
+			}
+		}
+	}
+
+	onNoiseEnd(callback) {
+		console.log("Noise end")
+		this.onNoiseEndCall = callback;
+	}
+
+	dispatchOnNoiseEnd() {
+		this.onNoiseEndCall()
+	}
+
+	// RAF
+	update(counter, target) {
+		//this.mesh.rotation.z += 0.001
+		this.uniforms.needsUpdate = true;
+		this.uniforms.u_time.value = counter;
+		// console.log(target)
+		this.uniforms.u_target.value = target ? target : new THREE.Vector3();
+		if(this.needNoiseUpdate) this.updateNoisePower();
+
 	}
 }
 
