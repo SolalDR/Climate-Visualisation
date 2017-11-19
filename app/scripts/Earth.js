@@ -17,10 +17,7 @@ class Earth extends Event {
 	constructor(args) {
 		super(args)
 
-		// this.eventsAvailable = ['fzef', 'fefze']
-		this.events = {
-			noiseEnd: [] 
-		}
+		this.eventsList = ['noiseEnd', 'noiseStart']
 
 		this.geometry; 
 		this.material;
@@ -195,14 +192,6 @@ class Earth extends Event {
 		}
 	}
 
-	onNoiseEnd(callback) {
-		console.log("Noise end")
-		this.onNoiseEndCall = callback;
-	}
-
-	dispatchOnNoiseEnd() {
-		this.onNoiseEndCall()
-	}
 
 	// RAF
 	update(counter, target) {

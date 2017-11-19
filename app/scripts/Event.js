@@ -1,8 +1,7 @@
 class Event {
 
   constructor() {
-    this.events = [];
-    this.eventsAvailables = [];
+    this.events = {};
   }
 
   eventExist(event, callback){
@@ -23,11 +22,12 @@ class Event {
         var callback = this.events[event][i];
         callback.call(this);
       }
+      return;
     }
   }
 
   on(event, callback){
-    if( !this.events[event] && parseInt(this.eventsList.indexOf(event)) ) {
+    if( typeof this.events[event] == "undefined" && parseInt(this.eventsList.indexOf(event)) >= 0 ) {
       this.events[ event ] = [];
     }
     if( this.events[event] && !this.eventExist(event, callback) ) {
