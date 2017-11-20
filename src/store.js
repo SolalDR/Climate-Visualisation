@@ -11,7 +11,9 @@ const state = {
   count: 0,
   countries: geoData.countries,
   mapkey: "AIzaSyC6JTJVlQ3EZHiNF9V9yim91Wh1tlhJuI0",
-  geocode: "AIzaSyBnwbe8HJoZudRFjADyOYmIFBTsK3JMc4U"
+  geocode: "AIzaSyBnwbe8HJoZudRFjADyOYmIFBTsK3JMc4U",
+  coord: { lat: 0, lon: 0 },
+  firstTime: true
 }
 
 const mutations = {

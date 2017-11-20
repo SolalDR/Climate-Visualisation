@@ -2,7 +2,7 @@
   <div class="detail">
     <h1>{{ country.nameLong }}</h1>
     <h2>{{ country.cd }}</h2>
-    <button id="back" @click.stop="toGlobe"></button>
+    <router-link id="back" to='/globe' tag="button"></router-link>
   </div>
 </template>
 

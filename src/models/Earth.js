@@ -17,9 +17,9 @@ class Earth extends Event {
 
 	constructor(args) {
 		super(args)
-
+    this.firstTime = args.firstTime;
 		this.eventsList = ['noiseEnd', 'noiseStart', 'load'];
-
+    console.log(this.firstTime)
 		this.geometry;
 		this.material;
 		this.mesh;
@@ -31,16 +31,23 @@ class Earth extends Event {
 		this.countries = [];
 		this.nbPoints = 0;
 		this.vertices = [];
-		this.style = Earth.STYLE_TRIANGLE
 		this.faces = [];
 		this.uniforms = {
 			u_time: { type: "f", value: 0 },
 			start: { type: "f", value: 0 },
 			end: { type: "f", value: 0 },
-			powerNoise: { type: "f", value: 1},
+			powerNoise: { type: "f", value: 1 },
 			u_target: { type: "vec3", value: new Vector3(0, 0, 0) }
 		};
-		this.ordonate = true;
+
+    if(!this.firstTime) {
+      this.uniforms.powerNoise.value = 0;
+      this.animTarget = false ;
+      this.animTarget = Earth.ORDONATE_STATE;
+    } else {
+      //this.uniforms.powerNoise.value = 0;
+      this.ordonate = true;
+    }
 	}
 
 	set ordonate(ordonate){

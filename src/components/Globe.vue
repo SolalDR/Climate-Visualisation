@@ -1,7 +1,7 @@
 <template>
-  <div class="start">
+  <div class="start" @mousemove="onMouseMove" >
       <p id="coord-display"></p>
-      <div id="canvas"></div>
+      <div id="canvas" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
   </div>
 </template>
 
@@ -9,7 +9,7 @@
 
 import datas from "./../data/elevation.js";
 
-import Helper from './../models/Helper';
+import GeoUtil from './../models/GeoUtil';
 import Blob from './../models/Blob';
 import Earth from "./../models/Earth";
 import GeoData from "./../models/GeoData";
@@ -26,20 +26,23 @@ export default {
   },
 
   mounted: function () {
-    this.counter = 0
-    this.initScene();       // scene, renderer, camera & control
-    this.initEarth();       // earth
-    this.initUi();          // HTML Composant
-    this.initEvents();      // Events (mousemove, resize)
-    this.initRaycaster();   // Raycaster
-    this.renderer.animate( this.render.bind(this) );
+    this.counter = 0;
+    this.canvas = this.$el.querySelector( '#canvas' )
+    if( this.$store.state.firstTime ) {
+      this.initScene();       // scene, renderer, camera & control
+      this.initEarth();       // earth
+      this.initUi();          // HTML Composant
+      this.initEvents();      // Events (mousemove, resize)
+      this.initRaycaster();   // Raycaster
+      this.renderer.animate( this.render.bind(this) );
+    }
   },
 
   methods: {
 
-    ///////////////////////////////////
+    /////////////////////////////////////
     //      INITIALISATION
-    ///////////////////////////////////
+    /////////////////////////////////////
 
     initUi: function() {
         this.coordDisplay = document.getElementById("coord-display");
@@ -48,39 +51,48 @@ export default {
     initEvents: function() {
         window.addEventListener('resize', this.onWindowResize.bind(this), false);
         window.addEventListener('mousemove', this.onMouseMove.bind(this), false);
-        this.canvas.addEventListener('click', this.onMouseUp.bind(this), false)
+        canvas.addEventListener('mousedown', this.onMouseDown.bind(this), false);
+        canvas.addEventListener('mouseup', this.onMouseUp.bind(this), false);
         this.onWindowResize();
     },
 
+    unsetEvents() {
+        window.removeEventListener('resize', this.onWindowResize.bind(this));
+        window.removeEventListener('mousemove', this.onMouseMove.bind(this));
+        canvas.removeEventListener('mousedown', this.onMouseDown.bind(this));
+        canvas.removeEventListener('mouseup', this.onMouseUp.bind(this));
+    },
+
     initEarth: function(){
+      var firstTime = this.$store.state.firstTime;
       this.earth = new Earth({
           size: 5,
           datasType: 'raw', // can be geojson
-          datas: datas // raw data
-          //datas: earth, // Geogjaon
+          datas: datas, // raw data
+          firstTime: firstTime
       });
       this.earth.initObject3d();
       this.scene.add(this.earth.mesh);
-      this.blob = new Blob(this.scene);
-      this.earth.on('noiseEnd', () => {
-          this.blob.toScale(1, 10);
-      })
+      this.blob = new Blob(this.scene, firstTime);
+      if( firstTime ){
+        this.$store.state.firstTime = false;
+        this.earth.on('noiseEnd', () => {
+            this.blob.toScale(1, 10);
+        })
+      }
+
     },
 
     initScene: function() {
         this.canvas = this.$el.querySelector( '#canvas' );
-        // document.body.appendChild( this.canvas );
-
         this.scene = new Scene();
         this.renderer = new WebGLRenderer( { antialias: true, alpha: 1 } );
         this.renderer.setClearColor( 0x000000, 0 );
         this.renderer.setPixelRatio( window.devicePixelRatio );
         this.renderer.setSize( window.innerWidth, window.innerHeight );
         this.canvas.appendChild( this.renderer.domElement );
-
         this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
-        this.camera.position.z = 15;
-
+        this.camera.position.copy(GeoUtil.coordToCart(this.$store.state.coord, 15));
         this.controls = new OrbitControls( this.camera );
         this.controls.update();
     },
@@ -94,12 +106,12 @@ export default {
     },
 
     initCastLine: function() {
-        var material = new LineBasicMaterial({ color: 0x000000 });
-        var geometry = new Geometry();
-        geometry.vertices.push( new Vector3( -10, 0, 0 ), new Vector3( -10, 0, 0 ) );
+      var material = new LineBasicMaterial({ color: 0x000000 });
+      var geometry = new Geometry();
+      geometry.vertices.push( new Vector3( -10, 0, 0 ), new Vector3( -10, 0, 0 ) );
 
-        this.castLine = new Line( geometry, material );
-        this.scene.add( this.castLine );
+      this.castLine = new Line( geometry, material );
+      this.scene.add( this.castLine );
     },
 
     ///////////////////////////////////
@@ -125,6 +137,8 @@ export default {
     mouseCall: function() {
         // calculate objects intersecting the picking ray
         var intersects = this.raycaster.intersectObjects( this.scene.children );
+        console.log("Intersect Count", this.raycaster, intersects.count)
+        // console.log(intersects)
         for(var i=0; i<intersects.length; i++) {
             if(intersects[i].object.name == "CasterTarget") {
 
@@ -140,13 +154,14 @@ export default {
                     this.castLine.geometry.vertices[1] = intersects[i].point;
                     this.castLine.geometry.verticesNeedUpdate = true;
                 }
+                break;
             }
         }
     },
 
     onMouseMove: function( event ) {
-        this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
-        this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+      this.mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+      this.mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
     },
 
     onMouseDown: function(event){
@@ -154,10 +169,11 @@ export default {
     },
 
     onMouseUp: function(event){
-      if( this.geoCoord ) {
-        console.log("click")
+      if( this.geoCoord && this.lastMouseDown && Date.now() - this.lastMouseDown < 100 ) {
+        this.lastMouseDown = null;
         GeoData.getCountryFromCoord(this.geoCoord, (cd) => {
           if(cd){
+            this.unsetEvents();
             this.$router.push({ name: 'detail', params: { cd: cd }})
           }
         });

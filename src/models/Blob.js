@@ -5,11 +5,15 @@ import {Vector3, Vector2, Mesh, SphereGeometry, MeshStandardMaterial, LineBasicM
 
 class Blob {
 
-  constructor(scene) {
+  constructor(scene, firstTime) {
     this.counter = 0;
     this.geometry = new SphereGeometry( 3, 32, 32 );
 
-    var uniforms = { u_time: { type: "f", value: 0 }, u_rat: { type: "f", value: 5.}, u_radius: {type:"f", value: 0 } }
+    var uniforms = {
+      u_time: { type: "f", value: 0 },
+      u_rat: { type: "f", value: 5.},
+      u_radius: {type:"f", value: firstTime ? 0 : 1 } }
+
     this.material = new ShaderMaterial({
         uniforms: uniforms,
         vertexShader: vertex,
@@ -17,7 +21,8 @@ class Blob {
         transparent: true
     });
 
-    var uniforms2 = { u_time: { type: "f", value: 0 }, u_rat: { type: "f", value: 10.}, u_radius: {type:"f", value: 0 } }
+    var uniforms2 = JSON.parse(JSON.stringify(uniforms));
+    uniforms2.u_rat.value = 10;
     this.material2 = new ShaderMaterial({
         uniforms: uniforms2,
         vertexShader: vertex,
