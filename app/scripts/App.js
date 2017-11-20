@@ -48,6 +48,8 @@ export default class App {
         this.earth.on('noiseEnd', () => {
             this.blob.toScale(1, 10);
         })
+
+
     }
 
     initScene() {

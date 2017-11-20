@@ -16,14 +16,18 @@ class Event {
     return exist; 
   }
 
-  dispatch(event){
-    if( this.events[event] && this.events[event].length ){
-      for(var i=0; i<this.events[event].length; i++ ){
-        var callback = this.events[event][i];
-        callback.call(this);
+
+
+  dispatch(e){
+    var list = e instanceof Array ? e : [e];
+    for(var j=0; j<list.length; j++){
+      if( this.events[list[j]] && this.events[list[j]].length ){
+        for(var i=0; i<this.events[list[j]].length; i++ ){
+        var callback = this.events[list[j]][i];
+          callback.call(this);
+        }
       }
-      return;
-    }
+    } 
   }
 
   on(event, callback){

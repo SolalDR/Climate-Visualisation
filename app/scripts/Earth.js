@@ -17,7 +17,7 @@ class Earth extends Event {
 	constructor(args) {
 		super(args)
 
-		this.eventsList = ['noiseEnd', 'noiseStart']
+		this.eventsList = ['noiseEnd', 'noiseStart', 'load'];
 
 		this.geometry; 
 		this.material;
@@ -180,14 +180,14 @@ class Earth extends Event {
 				this.uniforms.powerNoise.value = 0;
 				this.needNoiseUpdate = false;
 				this.casterHelper.scale.copy(new THREE.Vector3(1, 1, 1));
-				this.dispatch('noiseEnd');
+				this.dispatch(['noiseEnd', 'noiseChange']);
 			}
 		} else {
 			this.uniforms.powerNoise.value += 0.01; 
 			if(this.uniforms.powerNoise.value > 1) {
 				this.uniforms.powerNoise.value = 1;
 				this.needNoiseUpdate = false;
-				this.dispatch('noiseStart');
+				this.dispatch(['noiseEnd', 'noiseChange']);
 			}
 		}
 	}
@@ -201,7 +201,6 @@ class Earth extends Event {
 		// console.log(target)
 		this.uniforms.u_target.value = target ? target : new THREE.Vector3();
 		if(this.needNoiseUpdate) this.updateNoisePower();
-
 	}
 }
 
