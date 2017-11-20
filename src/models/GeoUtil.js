@@ -1,3 +1,5 @@
+import {Vector3} from 'three';
+
 class GeoUtil {
 
 	//Convertit les degré en radian
@@ -9,13 +11,11 @@ class GeoUtil {
 	  return rad*180/Math.PI;
 	}
 
-
-
 	// cubic-bezier(0,.59,0,1)
 	static  coordToCart(coord, r){
-		return new THREE.Vector3(
+		return new Vector3(
 			r * Math.cos(GeoUtil.toRadian(coord.lat)) * Math.cos(GeoUtil.toRadian(coord.lon)),
-			r * Math.cos(GeoUtil.toRadian(coord.lat)) * Math.sin(GeoUtil.toRadian(coord.lon)), 
+			r * Math.cos(GeoUtil.toRadian(coord.lat)) * Math.sin(GeoUtil.toRadian(coord.lon)),
 			r * Math.sin(GeoUtil.toRadian(coord.lat)));
 	}
 

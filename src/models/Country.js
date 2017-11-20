@@ -4,7 +4,7 @@ class Country {
 
 	constructor(data) {
 		var properties = data.properties;
-		this.cd = properties.iso_a3;
+		this.cd = properties.gu_a3;
 		this.cdShort = properties.iso_a2;
 		this.geometry = data.geometry;
 		this.nameLong = properties.name_long;
@@ -22,7 +22,7 @@ class Country {
 			if( typeof array[i][0] == "number" ){
 				points.push({ lon: array[i][0], lat: array[i][1] })
 			} else {
-				points = points.concat(this.loopCoords(array[i])); 
+				points = points.concat(this.loopCoords(array[i]));
 			}
 		}
 		return points;
@@ -32,9 +32,9 @@ class Country {
 		console.log(this.geometry.type);
 		this.geometry.coords = []
 		//if( this.geometry.type == "MultiPolygon") {
-			this.geometry.coords = this.loopCoords(this.geometry.coordinates);	
+			this.geometry.coords = this.loopCoords(this.geometry.coordinates);
 		//}
-		
+
 
 		this.nbPoint = this.geometry.coords.length;
 	}

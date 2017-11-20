@@ -1,4 +1,4 @@
-{
+var data = {
     "type": "FeatureCollection",
     "features": [
         {
@@ -56181,3 +56181,4 @@
         }
     ]
 }
+export default data;

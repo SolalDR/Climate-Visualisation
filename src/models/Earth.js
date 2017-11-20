@@ -1,10 +1,11 @@
 import Country from "./Country"
-import GeoUtil from "./GeoUtil"
+import GeoUtil from "./GeoUtil.js"
 import Event from './Event'
 
-import vertShader from './../glsl/shader.vert'
-import fragShader from './../glsl/shader.frag'
+import vertex from './../glsl/earth/shader.vert'
+import fragment from './../glsl/earth/shader.frag'
 
+import {Vector3, Vector2, Mesh, SphereGeometry, MeshStandardMaterial, LineBasicMaterial, Geometry, Line, BufferGeometry, BufferAttribute, ShaderMaterial, Points} from 'three';
 
 class Earth extends Event {
 
@@ -19,10 +20,10 @@ class Earth extends Event {
 
 		this.eventsList = ['noiseEnd', 'noiseStart', 'load'];
 
-		this.geometry; 
+		this.geometry;
 		this.material;
-		this.mesh; 
-		this.shaders = { fragment: fragShader, vertex: vertShader }
+		this.mesh;
+		this.shaders = { fragment: fragment, vertex: vertex }
 		this.radius = args.size ? args.size : Earth.SIZE;
 		this.ratio = this.radius / Earth.SIZE
 		this.datas = args.datas;
@@ -32,38 +33,38 @@ class Earth extends Event {
 		this.vertices = [];
 		this.style = Earth.STYLE_TRIANGLE
 		this.faces = [];
-		this.uniforms = { 
+		this.uniforms = {
 			u_time: { type: "f", value: 0 },
 			start: { type: "f", value: 0 },
 			end: { type: "f", value: 0 },
 			powerNoise: { type: "f", value: 1},
-			u_target: { type: "vec3", value: new THREE.Vector3(0, 0, 0) }
+			u_target: { type: "vec3", value: new Vector3(0, 0, 0) }
 		};
 		this.ordonate = true;
 	}
 
 	set ordonate(ordonate){
 		if(ordonate) {
-			this.animTarget = Earth.ORDONATE_STATE; 
+			this.animTarget = Earth.ORDONATE_STATE;
 			this.needNoiseUpdate = true;
 		} else {
-			this.animTarget = Earth.MESS_STATE; 
+			this.animTarget = Earth.MESS_STATE;
 			this.needNoiseUpdate = true;
-			this.casterHelper.scale.copy(new THREE.Vector3(0, 0, 0));
+			this.casterHelper.scale.copy(new Vector3(0, 0, 0));
 		}
 	}
 
   createCasterHelper(){
-    var geometry = new THREE.SphereGeometry(5, 32, 32); 
-    var material = new THREE.MeshStandardMaterial({
+    var geometry = new SphereGeometry(5, 32, 32);
+    var material = new MeshStandardMaterial({
         color: 0x000000,
         transparent: true,
         opacity: 0
-    }); 
-    this.casterHelper = new THREE.Mesh(geometry, material);
+    });
+    this.casterHelper = new Mesh(geometry, material);
     this.casterHelper.rotation.x = -Math.PI/2;
     this.casterHelper.name = "CasterTarget";
-    this.casterHelper.scale.copy(new THREE.Vector3(0, 0, 0));
+    this.casterHelper.scale.copy(new Vector3(0, 0, 0));
   }
 
 	loadGeojson(){
@@ -71,34 +72,32 @@ class Earth extends Event {
 			this.countries.push(new Country(this.datas.features[i]));
 			this.countries[i].genCartesian(this.radius);
 			this.countries[i].startRank = this.nbPoints;
-			this.vertices = this.vertices.concat( this.countries[i].geometry.points); 
+			this.vertices = this.vertices.concat( this.countries[i].geometry.points);
 			if(this.countries[i].nameLong === "France") {
 				this.uniforms.start = this.countries[i].startRank*3;
 				this.uniforms.end = this.countries[i].startRank*3 + this.countries[i].geometry.points.length*3;
 				console.log(this.countries[i].geometry.points)
 			}
-			this.nbPoints += this.countries[i].geometry.points.length; 
+			this.nbPoints += this.countries[i].geometry.points.length;
 		}
 	}
 
 	loadRawDatas() {
-		this.vertices = [];
-		var vec = new THREE.Vector3(0, 0, 0);
+    var vec = new Vector3(0, 0, 0);
 		for(var i=0; i<this.datas.length; i++) {
-			if( this.datas[i][2] == 0 ) this.datas[i][2] += 0;
 			this.vertices.push(GeoUtil.coordToCart({
 				lon: this.datas[i][2],
 				lat: this.datas[i][1]
-			}, this.radius + this.datas[i][0]*0.5))		
+			}, this.radius + this.datas[i][0]*0.5))
 		}
 	}
 
 	createTriangleFromPoint(vec) {
-		var quaternion = new THREE.Quaternion();
-		quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
+		// var quaternion = new THREE.Quaternion();
+		// quaternion.setFromAxisAngle( new THREE.Vector3( 0, 1, 0 ), Math.PI / 2 );
 
-		var vector = new THREE.Vector3( 1, 0, 0 );
-		vector.applyQuaternion( quaternion );
+		// var vector = new THREE.Vector3( 1, 0, 0 );
+		// vector.applyQuaternion( quaternion );
 	}
 
 	getGeoCoord(point) {
@@ -111,9 +110,10 @@ class Earth extends Event {
 			case "geojson": this.loadGeojson(); break;
 			case "raw": this.loadRawDatas(); break;
 		}
-		if( this.style == Earth.STYLE_TRIANGLE ) {
+    if( this.style == Earth.STYLE_TRIANGLE ) {
 			var radius = 0.3;
 			var postVertices = [];
+      var vertices
 			for(var i=0; i<this.vertices.length; i++) {
 				postVertices.push()
 			}
@@ -135,9 +135,9 @@ class Earth extends Event {
 
 	// Gen geometry
 	genGeometry(){
-		this.geometry = new THREE.BufferGeometry();
-		this.geometry.addAttribute( 'rank', new THREE.BufferAttribute( new Float32Array(this.nbPoints*3).map((i, r) => {return r}), 3))
-		this.geometry.addAttribute( 'position', new THREE.BufferAttribute( this.buffer, 3))
+		this.geometry = new BufferGeometry();
+		this.geometry.addAttribute( 'rank', new BufferAttribute( new Float32Array(this.nbPoints*3).map((i, r) => {return r}), 3))
+		this.geometry.addAttribute( 'position', new BufferAttribute( this.buffer, 3))
 	}
 
 	genFaces(){
@@ -148,7 +148,7 @@ class Earth extends Event {
 
 	// Gen shader material
 	genMaterial() {
-		this.material = new THREE.ShaderMaterial({
+		this.material = new ShaderMaterial({
         uniforms: this.uniforms,
         vertexShader: this.shaders.vertex,
         fragmentShader: this.shaders.fragment,
@@ -164,11 +164,11 @@ class Earth extends Event {
 		if(this.buffer && this.shaders) {
 			this.genGeometry();
 			this.genMaterial();
-     
-      this.mesh = new THREE.Points(this.geometry, this.material);
+
+      this.mesh = new Points(this.geometry, this.material);
       this.mesh.rotation.x = -Math.PI/2;
-	    
-	    return this.mesh; 
+
+	     return this.mesh;
 		}
 	}
 
@@ -179,11 +179,11 @@ class Earth extends Event {
 			if(this.uniforms.powerNoise.value < 0) {
 				this.uniforms.powerNoise.value = 0;
 				this.needNoiseUpdate = false;
-				this.casterHelper.scale.copy(new THREE.Vector3(1, 1, 1));
+				this.casterHelper.scale.copy(new Vector3(1, 1, 1));
 				this.dispatch(['noiseEnd', 'noiseChange']);
 			}
 		} else {
-			this.uniforms.powerNoise.value += 0.01; 
+			this.uniforms.powerNoise.value += 0.01;
 			if(this.uniforms.powerNoise.value > 1) {
 				this.uniforms.powerNoise.value = 1;
 				this.needNoiseUpdate = false;
@@ -199,7 +199,7 @@ class Earth extends Event {
 		this.uniforms.needsUpdate = true;
 		this.uniforms.u_time.value = counter;
 		// console.log(target)
-		this.uniforms.u_target.value = target ? target : new THREE.Vector3();
+		this.uniforms.u_target.value = target ? target : new Vector3();
 		if(this.needNoiseUpdate) this.updateNoisePower();
 	}
 }
