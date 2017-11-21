@@ -14,5 +14,6 @@ export default {
 </script>
 
 <style lang="sass">
+@import "style/leaflet.css";
 @import "style/app"
 </style>

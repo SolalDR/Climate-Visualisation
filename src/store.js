@@ -10,7 +10,6 @@ Vue.use(Vuex)
 const state = {
   count: 0,
   countries: geoData.countries,
-  mapkey: "AIzaSyC6JTJVlQ3EZHiNF9V9yim91Wh1tlhJuI0",
   geocode: "AIzaSyBnwbe8HJoZudRFjADyOYmIFBTsK3JMc4U",
   coord: { lat: 0, lon: 0 },
   firstTime: true
@@ -30,9 +29,11 @@ const getters = {
   countPlural: ({ count }) => Math.min(count, 2)
 }
 
-export default new Vuex.Store({
+var store =  new Vuex.Store({
   state,
   mutations,
   actions,
   getters
 })
+
+export default store;

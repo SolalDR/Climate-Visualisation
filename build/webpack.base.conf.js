@@ -43,10 +43,10 @@ module.exports = {
         include: projectRoot,
         exclude: /node_modules/
       },
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
+      // {
+      //   test: /\.json$/,
+      //   loader: 'raw-loader'
+      // },
       {
         test: /\.svg(\?.*)?$/,
         loader: 'svg-sprite?' + JSON.stringify({
@@ -74,10 +74,6 @@ module.exports = {
       {
         test:[/\.vert$/,/\.frag$/],
         loader: 'webpack-glsl-loader'
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
       }
     ],
     rules: [{
@@ -88,8 +84,6 @@ module.exports = {
           loader: "css-loader" // translates CSS into CommonJS
       }, {
           loader: "sass-loader" // compiles Sass to CSS
-      },{
-          loader: "json-loader"
       }
     ]
     }]

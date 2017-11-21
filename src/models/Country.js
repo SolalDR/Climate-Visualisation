@@ -4,6 +4,7 @@ class Country {
 
 	constructor(data) {
 		var properties = data.properties;
+    this.properties = properties;
 		this.cd = properties.gu_a3;
 		this.cdShort = properties.iso_a2;
 		this.geometry = data.geometry;
@@ -13,6 +14,7 @@ class Country {
 		this.pib = properties.gdp_md_est ? properties.gdp_md_est : null;
 		this.pop = properties.pop_est;
 		this.economy = properties.economy;
+    this.coordMap = null;
 		this.concatCoords();
 	}
 

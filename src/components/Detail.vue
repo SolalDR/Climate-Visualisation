@@ -2,29 +2,37 @@
   <div class="detail">
     <h1>{{ country.nameLong }}</h1>
     <h2>{{ country.cd }}</h2>
-    <router-link id="back" to='/globe' tag="button"></router-link>
+    <button class="detail__back" @click="close"></button>
+    <div class="map__container">
+      <map3d :country="country"></map3d>
+    </div>
   </div>
 </template>
 
 <script>
 
 import {Scene, PerspectiveCamera, AmbientLight, WebGLRenderer, BoxGeometry, MeshBasicMaterial, Mesh} from 'three';
+import Map3d from "./Map"
 
 export default {
-  props: ["cd"],
+
+  components: { Map3d },
+
+  props: ["cd", "coord"],
   data: function () {
     return {
       country: {}
     }
   },
-  mounted: function () {
-    this.country = this.$store.state.countries[this.$route.params.cd];
-    console.log(this.country)
+
+  created: function () {
+    this.country = this.$store.state.countries[this.cd];
+    this.country.coordMap = this.coord;
   },
 
   methods: {
-    toGlobe: function(){
-      this.$router.push({ path: "/globe" })
+    close: function(){
+      this.$emit("close", true);
     }
   }
 }
@@ -32,14 +40,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
-h1
-  color: green
 
-#back
-  position: absolute
-  top: 20px
-  right: 20px
-  height: 50px
-  width: 50px
-  background-color: #CCC
+.detail
+  height: 100vh
+  padding: 30px
+  box-sizing: border-box
+  &__back
+    position: absolute
+    top: 20px
+    right: 20px
+    height: 50px
+    width: 50px
+    background-color: #CCC
+
 </style>

@@ -1,7 +1,11 @@
 <template>
   <div class="start" @mousemove="onMouseMove" >
-      <p id="coord-display"></p>
-      <div id="canvas" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
+      <div class="globe__container" :class="canvasClass">
+        <p id="coord-display"></p>
+        <div id="canvas" class="globe" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
+      </div>
+      <detail v-if="detailActive && cd" :cd="cd" :coord="geoCoord" @close="hideDetail"></detail>
+      <timeline></timeline>
   </div>
 </template>
 
@@ -13,37 +17,40 @@ import GeoUtil from './../models/GeoUtil';
 import Blob from './../models/Blob';
 import Earth from "./../models/Earth";
 import GeoData from "./../models/GeoData";
-import OrbitControls from './../models/OrbitControls'
-
+import OrbitControls from './../models/OrbitControls';
+import Detail from './Detail';
+import Timeline from "./Timeline";
 import {Scene, PerspectiveCamera, WebGLRenderer, Vector3, Vector2, Mesh, Raycaster, LineBasicMaterial, Geometry, Line} from 'three';
 
 export default {
 
+  components: { Detail, Timeline },
+
   data: function () {
     return {
       canvas: null,
-      scene: null,
-      renderer: null,
-      controls: null,
-      raycaster: null,
-      mouse: null,
-      earth: null,
-      blob: null,
-      castLine: null
+      detailActive: false,
+      cd: null,
+      geoCoord: null
+    }
+  },
+
+  computed: {
+    canvasClass: function(){
+      return this.detailActive ? "globe__container--hide" : "globe__container--display"
     }
   },
 
   mounted: function () {
     this.counter = 0;
     this.canvas = this.$el.querySelector( '#canvas' )
-    if( this.$store.state.firstTime ) {
-      this.initScene();       // scene, renderer, camera & control
-      this.initEarth();       // earth
-      this.initUi();          // HTML Composant
-      this.initEvents();      // Events (mousemove, resize)
-      this.initRaycaster();   // Raycaster
-      this.renderer.animate( this.render.bind(this) );
-    }
+    this.initScene();       // scene, renderer, camera & control
+    this.initEarth();       // earth
+    this.initUi();          // HTML Composant
+    this.initEvents();      // Events (mousemove, resize)
+    this.initRaycaster();   // Raycaster
+
+    this.renderer.animate( this.render.bind(this) );
   },
 
   methods: {
@@ -92,19 +99,17 @@ export default {
     },
 
     initScene: function() {
-
-
-        this.canvas = this.$el.querySelector( '#canvas' );
-        this.scene = new Scene();
-        this.renderer = new WebGLRenderer( { antialias: true, alpha: 1 } );
-        this.renderer.setClearColor( 0x000000, 0 );
-        this.renderer.setPixelRatio( window.devicePixelRatio );
-        this.renderer.setSize( window.innerWidth, window.innerHeight );
-        this.canvas.appendChild( this.renderer.domElement );
-        this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
-        this.camera.position.copy(GeoUtil.coordToCart(this.$store.state.coord, 15));
-        this.controls = new OrbitControls( this.camera );
-        this.controls.update();
+      this.canvas = this.$el.querySelector( '#canvas' );
+      this.scene = new Scene();
+      this.renderer = new WebGLRenderer( { antialias: true, alpha: 1 } );
+      this.renderer.setClearColor( 0x000000, 0 );
+      this.renderer.setPixelRatio( window.devicePixelRatio );
+      this.renderer.setSize( window.innerWidth, window.innerHeight );
+      this.canvas.appendChild( this.renderer.domElement );
+      this.camera = new PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 0.1, 100 );
+      this.camera.position.copy(GeoUtil.coordToCart(this.$store.state.coord, 15));
+      this.controls = new OrbitControls( this.camera );
+      this.controls.update();
     },
 
     initRaycaster: function() {
@@ -123,17 +128,27 @@ export default {
       this.scene.add( this.castLine );
     },
 
+    showDetail: function(cd) {
+      this.cd = cd;
+      this.detailActive = true;
+    },
+
+    hideDetail: function() {
+      this.cd = null;
+      this.detailActive = false;
+    },
+
     ///////////////////////////////////
     //              RAF
     ///////////////////////////////////
 
     render: function() {
-        this.counter += 0.1;
-        this.raycaster.setFromCamera( this.mouse, this.camera );
-        this.mouseCall();
+      this.counter += 0.1;
+      this.raycaster.setFromCamera( this.mouse, this.camera );
+      this.mouseCall();
 
-        this.blob.update(this.counter)
-        this.earth.update(this.counter, this.target);
+      this.blob.update(this.counter)
+      this.earth.update(this.counter, this.target);
 
       this.renderer.render( this.scene, this.camera );
     },
@@ -146,8 +161,6 @@ export default {
     mouseCall: function() {
         // calculate objects intersecting the picking ray
         var intersects = this.raycaster.intersectObjects( this.scene.children );
-        // console.log("Intersect Count", this.raycaster, intersects.count)
-        // console.log(intersects)
         for(var i=0; i<intersects.length; i++) {
             if(intersects[i].object.name == "CasterTarget") {
 
@@ -183,12 +196,11 @@ export default {
         GeoData.getCountryFromCoord(this.geoCoord, (cd) => {
           if(cd){
             this.unsetEvents();
-            this.$router.push({ name: 'detail', params: { cd: cd }})
+            this.showDetail(cd);
           }
         });
       }
     },
-
     onWindowResize: function() {
       this.camera.aspect = window.innerWidth / window.innerHeight;
       this.camera.updateProjectionMatrix();
@@ -200,6 +212,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="sass" scoped>
-h1
-  color: green
+
+.globe
+  &__container
+    transition: 1s all ease
+    position: fixed
+    top: 0
+    left: 0
+    width: 100%
+    height: 100vh
+    &--display
+      transform: translateY(0)
+    &--hide
+      transform: translateY(-100%)
 </style>
