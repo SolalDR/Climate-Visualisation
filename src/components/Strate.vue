@@ -1,7 +1,7 @@
 <template>
   <div class="strate" :style="style" :class="'strate--'+type">
-    <v-map ref="map" :zoom=3 :center="[country.coordMap.lat, country.coordMap.lon]" :dragging="false" >
-      <v-tilelayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png" :options="mapOptions"></v-tilelayer>
+    <v-map ref="map" :zoom=3 :minZoom=3 :maxZoom=3 :center="[country.coordMap.lat, country.coordMap.lon]" :dragging="false" >
+      <v-tilelayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"></v-tilelayer>
       <v-geojson :geojson="parseGeo" :options="geoJsonOptions"></v-geojson>
     </v-map>
   </div>
@@ -10,9 +10,6 @@
 <script>
 
 import Vue2Leaflet from "vue2-leaflet";
-import mapStyle from './../assets/mapStyle.json'
-
-console.log(JSON.parse(mapStyle))
 
 export default {
 
@@ -43,9 +40,6 @@ export default {
           "weight": 1,
           "opacity": 0.65
         }
-      },
-      mapOptions: {
-        style: JSON.parse(mapStyle)
       }
     }
   },
@@ -61,10 +55,6 @@ export default {
     var pathEl = this.$el.querySelector(".leaflet-zoom-animated path");
     var g = this.$el.querySelector(".leaflet-zoom-animated g");
     var mask = document.createElementNS(ns, "mask");
-
-    // mask.setAttributeNS("http://www.w3.org/2000/svg", "width", pathEl.getAttributeNS("http://www.w3.org/2000/svg", "width"))
-    // mask.setAttributeNS("http://www.w3.org/2000/svg", "height", pathEl.getAttributeNS("http://www.w3.org/2000/svg", "height"))
-
     var defs = document.createElementNS(ns, "defs");
     defs.appendChild(mask)
     mask.setAttribute("id", "countryMask")
@@ -72,12 +62,12 @@ export default {
 
     var maskPath = pathEl.cloneNode(true);
     mask.appendChild(maskPath)
-
-    for(var i=0; i<2000; i++) {
+    var boundary = pathEl.getBBox();
+    for(var i=0; i<500; i++) {
       circles.push(document.createElementNS(ns, "circle"))
-      circles[i].setAttribute("r", 6)
-      circles[i].setAttribute("cx", Math.random()*720)
-      circles[i].setAttribute("cy", Math.random()*720)
+      circles[i].setAttribute("r", 2)
+      circles[i].setAttribute("cx", boundary.x+Math.random()*boundary.width)
+      circles[i].setAttribute("cy", boundary.y+Math.random()*boundary.height)
       circles[i].setAttribute("fill", "red")
       circles[i].setAttribute("mask", "url(#countryMask)");
       svg.appendChild(circles[i])

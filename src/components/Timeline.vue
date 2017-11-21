@@ -95,7 +95,7 @@ $range-label-width: 60px !default;
 .range-slider__container {
   width: 70%;
   position: fixed;
-  bottom: 100px;
+  bottom: 8vh;
   left: 15%;
   z-index: 999;
 }
