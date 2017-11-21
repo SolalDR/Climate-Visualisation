@@ -1,0 +1,934 @@
+[
+  {
+    "cd": "ABW",
+    "precipitation_projected": "-121 to 24"
+  },
+  {
+    "cd": "ADO",
+    "precipitation_projected": "-113 to -22"
+  },
+  {
+    "cd": "AFG",
+    "precipitation_projected": "-58 to 13"
+  },
+  {
+    "cd": "AGO",
+    "precipitation_projected": "-89 to 75"
+  },
+  {
+    "cd": "ALB",
+    "precipitation_projected": "-147 to -44"
+  },
+  {
+    "cd": "ARE",
+    "precipitation_projected": "-26 to 17"
+  },
+  {
+    "cd": "ARG",
+    "precipitation_projected": "-57 to 52"
+  },
+  {
+    "cd": "ARM",
+    "precipitation_projected": "-75 to -7"
+  },
+  {
+    "cd": "ASM",
+    "precipitation_projected": "-40 to 237"
+  },
+  {
+    "cd": "ATG",
+    "precipitation_projected": "-104 to 37"
+  },
+  {
+    "cd": "AUS",
+    "precipitation_projected": "-67 to 54"
+  },
+  {
+    "cd": "AUT",
+    "precipitation_projected": "-70 to 27"
+  },
+  {
+    "cd": "AZE",
+    "precipitation_projected": "-58 to 3"
+  },
+  {
+    "cd": "BDI",
+    "precipitation_projected": "-21 to 206"
+  },
+  {
+    "cd": "BEL",
+    "precipitation_projected": "-64 to 29"
+  },
+  {
+    "cd": "BEN",
+    "precipitation_projected": "-207 to 97"
+  },
+  {
+    "cd": "BFA",
+    "precipitation_projected": "-229 to 88"
+  },
+  {
+    "cd": "BGD",
+    "precipitation_projected": "-126 to 120"
+  },
+  {
+    "cd": "BGR",
+    "precipitation_projected": "-127 to -21"
+  },
+  {
+    "cd": "BHR",
+    "precipitation_projected": "-19 to 4"
+  },
+  {
+    "cd": "BHS",
+    "precipitation_projected": "-96 to 74"
+  },
+  {
+    "cd": "BIH",
+    "precipitation_projected": "-116 to -7"
+  },
+  {
+    "cd": "BLR",
+    "precipitation_projected": "8 to 70"
+  },
+  {
+    "cd": "BLZ",
+    "precipitation_projected": "-189 to 16"
+  },
+  {
+    "cd": "BMU",
+    "precipitation_projected": "-97 to 60"
+  },
+  {
+    "cd": "BOL",
+    "precipitation_projected": "-91 to 137"
+  },
+  {
+    "cd": "BRA",
+    "precipitation_projected": "-95 to 136"
+  },
+  {
+    "cd": "BRB",
+    "precipitation_projected": "-154 to 14"
+  },
+  {
+    "cd": "BRN",
+    "precipitation_projected": "-185 to 111"
+  },
+  {
+    "cd": "BTN",
+    "precipitation_projected": "-112 to 298"
+  },
+  {
+    "cd": "BWA",
+    "precipitation_projected": "-106 to 24"
+  },
+  {
+    "cd": "CAF",
+    "precipitation_projected": "-73 to 100"
+  },
+  {
+    "cd": "CAN",
+    "precipitation_projected": "17 to 88"
+  },
+  {
+    "cd": "CHE",
+    "precipitation_projected": "-89 to 11"
+  },
+  {
+    "cd": "CHI",
+    "precipitation_projected": ".."
+  },
+  {
+    "cd": "CHL",
+    "precipitation_projected": "-118 to 24"
+  },
+  {
+    "cd": "CHN",
+    "precipitation_projected": "-37 to 86"
+  },
+  {
+    "cd": "CIV",
+    "precipitation_projected": "-125 to 73"
+  },
+  {
+    "cd": "CMR",
+    "precipitation_projected": "-71 to 115"
+  },
+  {
+    "cd": "COG",
+    "precipitation_projected": "-40 to 134"
+  },
+  {
+    "cd": "COK",
+    "precipitation_projected": "-57 to 174"
+  },
+  {
+    "cd": "COL",
+    "precipitation_projected": "-80 to 199"
+  },
+  {
+    "cd": "COM",
+    "precipitation_projected": "-9 to 140"
+  },
+  {
+    "cd": "CPV",
+    "precipitation_projected": "-32 to 12"
+  },
+  {
+    "cd": "CRI",
+    "precipitation_projected": "-239 to 60"
+  },
+  {
+    "cd": "CUB",
+    "precipitation_projected": "-108 to 39"
+  },
+  {
+    "cd": "CUW",
+    "precipitation_projected": ".."
+  },
+  {
+    "cd": "CYM",
+    "precipitation_projected": "-122 to 39"
+  },
+  {
+    "cd": "CYP",
+    "precipitation_projected": "-98 to -44"
+  },
+  {
+    "cd": "CZE",
+    "precipitation_projected": "-43 to 55"
+  },
+  {
+    "cd": "DEU",
+    "precipitation_projected": "-38 to 57"
+  },
+  {
+    "cd": "DJI",
+    "precipitation_projected": "-29 to 57"
+  },
+  {
+    "cd": "DMA",
+    "precipitation_projected": "-106 to 42"
+  },
+  {
+    "cd": "DNK",
+    "precipitation_projected": "21 to 87"
+  },
+  {
+    "cd": "DOM",
+    "precipitation_projected": "-128 to 30"
+  },
+  {
+    "cd": "DZA",
+    "precipitation_projected": "-39 to 4"
+  },
+  {
+    "cd": "EAP",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "ECA",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "ECU",
+    "precipitation_projected": "22 to 273"
+  },
+  {
+    "cd": "EGY",
+    "precipitation_projected": "-20 to 1"
+  },
+  {
+    "cd": "EMU",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "ERI",
+    "precipitation_projected": "-55 to 26"
+  },
+  {
+    "cd": "ESP",
+    "precipitation_projected": "-112 to -18"
+  },
+  {
+    "cd": "EST",
+    "precipitation_projected": "33 to 93"
+  },
+  {
+    "cd": "ETH",
+    "precipitation_projected": "-42 to 79"
+  },
+  {
+    "cd": "FIN",
+    "precipitation_projected": "37 to 103"
+  },
+  {
+    "cd": "FJI",
+    "precipitation_projected": "-93 to 271"
+  },
+  {
+    "cd": "FRA",
+    "precipitation_projected": "-112 to 2"
+  },
+  {
+    "cd": "FRO",
+    "precipitation_projected": "16 to 95"
+  },
+  {
+    "cd": "FSM",
+    "precipitation_projected": "-85 to 411"
+  },
+  {
+    "cd": "GAB",
+    "precipitation_projected": "-51 to 148"
+  },
+  {
+    "cd": "GBR",
+    "precipitation_projected": "-10 to 66"
+  },
+  {
+    "cd": "GEO",
+    "precipitation_projected": "-77 to -3"
+  },
+  {
+    "cd": "GHA",
+    "precipitation_projected": "-159 to 83"
+  },
+  {
+    "cd": "GIB",
+    "precipitation_projected": "-100 to -26"
+  },
+  {
+    "cd": "GIN",
+    "precipitation_projected": "-122 to 104"
+  },
+  {
+    "cd": "GMB",
+    "precipitation_projected": "-87 to 26"
+  },
+  {
+    "cd": "GNB",
+    "precipitation_projected": "-69 to 130"
+  },
+  {
+    "cd": "GNQ",
+    "precipitation_projected": "-16 to 129"
+  },
+  {
+    "cd": "GRC",
+    "precipitation_projected": "-110 to -40"
+  },
+  {
+    "cd": "GRD",
+    "precipitation_projected": "-245 to 7"
+  },
+  {
+    "cd": "GRL",
+    "precipitation_projected": "6 to 74"
+  },
+  {
+    "cd": "GTM",
+    "precipitation_projected": "-186 to 22"
+  },
+  {
+    "cd": "GUM",
+    "precipitation_projected": "-25 to 230"
+  },
+  {
+    "cd": "GUY",
+    "precipitation_projected": "-158 to 72"
+  },
+  {
+    "cd": "HIC",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "HKG",
+    "precipitation_projected": "-83 to 73"
+  },
+  {
+    "cd": "HND",
+    "precipitation_projected": "-204 to 15"
+  },
+  {
+    "cd": "HRV",
+    "precipitation_projected": "-112 to -2"
+  },
+  {
+    "cd": "HTI",
+    "precipitation_projected": "-125 to 34"
+  },
+  {
+    "cd": "HUN",
+    "precipitation_projected": "-75 to 23"
+  },
+  {
+    "cd": "IDN",
+    "precipitation_projected": "-160 to 234"
+  },
+  {
+    "cd": "IMY",
+    "precipitation_projected": "-13 to 56"
+  },
+  {
+    "cd": "IND",
+    "precipitation_projected": "-91 to 135"
+  },
+  {
+    "cd": "IRL",
+    "precipitation_projected": "-13 to 78"
+  },
+  {
+    "cd": "IRN",
+    "precipitation_projected": "-51 to 6"
+  },
+  {
+    "cd": "IRQ",
+    "precipitation_projected": "-38 to -2"
+  },
+  {
+    "cd": "ISL",
+    "precipitation_projected": "-1 to 101"
+  },
+  {
+    "cd": "ISR",
+    "precipitation_projected": "-41 to -11"
+  },
+  {
+    "cd": "ITA",
+    "precipitation_projected": "-108 to -11"
+  },
+  {
+    "cd": "JAM",
+    "precipitation_projected": "-102 to 28"
+  },
+  {
+    "cd": "JOR",
+    "precipitation_projected": "-28 to -3"
+  },
+  {
+    "cd": "JPN",
+    "precipitation_projected": "-47 to 80"
+  },
+  {
+    "cd": "KAZ",
+    "precipitation_projected": "-1 to 37"
+  },
+  {
+    "cd": "KEN",
+    "precipitation_projected": "0 to 144"
+  },
+  {
+    "cd": "KGZ",
+    "precipitation_projected": "-32 to 35"
+  },
+  {
+    "cd": "KHM",
+    "precipitation_projected": "-109 to 95"
+  },
+  {
+    "cd": "KIR",
+    "precipitation_projected": "81 to 385"
+  },
+  {
+    "cd": "KNA",
+    "precipitation_projected": "-102 to 32"
+  },
+  {
+    "cd": "KOR",
+    "precipitation_projected": "0 to 181"
+  },
+  {
+    "cd": "KSV",
+    "precipitation_projected": "-148 to -34"
+  },
+  {
+    "cd": "KWT",
+    "precipitation_projected": "-19 to 4"
+  },
+  {
+    "cd": "LAC",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "LAO",
+    "precipitation_projected": "-95 to 70"
+  },
+  {
+    "cd": "LBN",
+    "precipitation_projected": "-75 to -27"
+  },
+  {
+    "cd": "LBR",
+    "precipitation_projected": "-115 to 81"
+  },
+  {
+    "cd": "LBY",
+    "precipitation_projected": "-18 to 5"
+  },
+  {
+    "cd": "LCA",
+    "precipitation_projected": "-159 to 14"
+  },
+  {
+    "cd": "LIC",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "LIE",
+    "precipitation_projected": "-66 to 32"
+  },
+  {
+    "cd": "LKA",
+    "precipitation_projected": "11 to 196"
+  },
+  {
+    "cd": "LMC",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "LMY",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "LSO",
+    "precipitation_projected": "-66 to 89"
+  },
+  {
+    "cd": "LTU",
+    "precipitation_projected": "22 to 83"
+  },
+  {
+    "cd": "LUX",
+    "precipitation_projected": "-86 to 26"
+  },
+  {
+    "cd": "LVA",
+    "precipitation_projected": "31 to 89"
+  },
+  {
+    "cd": "MAC",
+    "precipitation_projected": "-83 to 73"
+  },
+  {
+    "cd": "MAF",
+    "precipitation_projected": ".."
+  },
+  {
+    "cd": "MAR",
+    "precipitation_projected": "-62 to -5"
+  },
+  {
+    "cd": "MCO",
+    "precipitation_projected": "-114 to 1"
+  },
+  {
+    "cd": "MDA",
+    "precipitation_projected": "-72 to 11"
+  },
+  {
+    "cd": "MDG",
+    "precipitation_projected": "-104 to 56"
+  },
+  {
+    "cd": "MDV",
+    "precipitation_projected": "-2 to 319"
+  },
+  {
+    "cd": "MEX",
+    "precipitation_projected": "-178 to 10"
+  },
+  {
+    "cd": "MHL",
+    "precipitation_projected": "8 to 240"
+  },
+  {
+    "cd": "MIC",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "MKD",
+    "precipitation_projected": "-150 to -43"
+  },
+  {
+    "cd": "MLI",
+    "precipitation_projected": "-142 to 43"
+  },
+  {
+    "cd": "MLT",
+    "precipitation_projected": "-67 to -28"
+  },
+  {
+    "cd": "MMR",
+    "precipitation_projected": "-84 to 97"
+  },
+  {
+    "cd": "MNA",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "MNE",
+    "precipitation_projected": "-138 to -27"
+  },
+  {
+    "cd": "MNG",
+    "precipitation_projected": "1 to 50"
+  },
+  {
+    "cd": "MNP",
+    "precipitation_projected": "1 to 197"
+  },
+  {
+    "cd": "MOZ",
+    "precipitation_projected": "-69 to 61"
+  },
+  {
+    "cd": "MRT",
+    "precipitation_projected": "-113 to 9"
+  },
+  {
+    "cd": "MUS",
+    "precipitation_projected": "-165 to 67"
+  },
+  {
+    "cd": "MWI",
+    "precipitation_projected": "-53 to 91"
+  },
+  {
+    "cd": "MYS",
+    "precipitation_projected": "-160 to 117"
+  },
+  {
+    "cd": "MYT",
+    "precipitation_projected": "-24 to 112"
+  },
+  {
+    "cd": "NAM",
+    "precipitation_projected": "-67 to 23"
+  },
+  {
+    "cd": "NCL",
+    "precipitation_projected": "-122 to 118"
+  },
+  {
+    "cd": "NER",
+    "precipitation_projected": "-71 to 36"
+  },
+  {
+    "cd": "NGA",
+    "precipitation_projected": "-128 to 89"
+  },
+  {
+    "cd": "NIC",
+    "precipitation_projected": "-220 to 19"
+  },
+  {
+    "cd": "NIU",
+    "precipitation_projected": "-9 to 153"
+  },
+  {
+    "cd": "NLD",
+    "precipitation_projected": "-18 to 50"
+  },
+  {
+    "cd": "NOR",
+    "precipitation_projected": "41 to 131"
+  },
+  {
+    "cd": "NPL",
+    "precipitation_projected": "-116 to 231"
+  },
+  {
+    "cd": "NRU",
+    "precipitation_projected": "-60 to 565"
+  },
+  {
+    "cd": "NZL",
+    "precipitation_projected": "-44 to 53"
+  },
+  {
+    "cd": "OMN",
+    "precipitation_projected": "-16 to 31"
+  },
+  {
+    "cd": "PAK",
+    "precipitation_projected": "-60 to 36"
+  },
+  {
+    "cd": "PAN",
+    "precipitation_projected": "-228 to 107"
+  },
+  {
+    "cd": "PER",
+    "precipitation_projected": "-57 to 181"
+  },
+  {
+    "cd": "PHL",
+    "precipitation_projected": "-136 to 140"
+  },
+  {
+    "cd": "PLW",
+    "precipitation_projected": "-89 to 172"
+  },
+  {
+    "cd": "PNG",
+    "precipitation_projected": "-163 to 421"
+  },
+  {
+    "cd": "POL",
+    "precipitation_projected": "-12 to 64"
+  },
+  {
+    "cd": "PRI",
+    "precipitation_projected": "-133 to 37"
+  },
+  {
+    "cd": "PRK",
+    "precipitation_projected": "-9 to 129"
+  },
+  {
+    "cd": "PRT",
+    "precipitation_projected": "-113 to -7"
+  },
+  {
+    "cd": "PRY",
+    "precipitation_projected": "-48 to 112"
+  },
+  {
+    "cd": "PYF",
+    "precipitation_projected": "-79 to 283"
+  },
+  {
+    "cd": "QAT",
+    "precipitation_projected": "-23 to 8"
+  },
+  {
+    "cd": "ROM",
+    "precipitation_projected": "-92 to 2"
+  },
+  {
+    "cd": "RUS",
+    "precipitation_projected": "24 to 79"
+  },
+  {
+    "cd": "RWA",
+    "precipitation_projected": "-12 to 211"
+  },
+  {
+    "cd": "SAS",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "SAU",
+    "precipitation_projected": "-27 to 9"
+  },
+  {
+    "cd": "SDN",
+    "precipitation_projected": "-69 to 44"
+  },
+  {
+    "cd": "SEN",
+    "precipitation_projected": "-124 to 37"
+  },
+  {
+    "cd": "SGP",
+    "precipitation_projected": "-134 to 49"
+  },
+  {
+    "cd": "SID",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "SLB",
+    "precipitation_projected": "-107 to 314"
+  },
+  {
+    "cd": "SLE",
+    "precipitation_projected": "-96 to 128"
+  },
+  {
+    "cd": "SLV",
+    "precipitation_projected": "-205 to 14"
+  },
+  {
+    "cd": "SMR",
+    "precipitation_projected": "-111 to 3"
+  },
+  {
+    "cd": "SOM",
+    "precipitation_projected": "-4 to 111"
+  },
+  {
+    "cd": "SRB",
+    "precipitation_projected": "-125 to -15"
+  },
+  {
+    "cd": "SSA",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "STP",
+    "precipitation_projected": "-42 to 137"
+  },
+  {
+    "cd": "SUR",
+    "precipitation_projected": "-138 to 107"
+  },
+  {
+    "cd": "SVK",
+    "precipitation_projected": "-44 to 45"
+  },
+  {
+    "cd": "SVN",
+    "precipitation_projected": "-93 to 5"
+  },
+  {
+    "cd": "SWE",
+    "precipitation_projected": "35 to 107"
+  },
+  {
+    "cd": "SWZ",
+    "precipitation_projected": "-82 to 34"
+  },
+  {
+    "cd": "SXM",
+    "precipitation_projected": ".."
+  },
+  {
+    "cd": "SYC",
+    "precipitation_projected": "-75 to 226"
+  },
+  {
+    "cd": "SYR",
+    "precipitation_projected": "-57 to -13"
+  },
+  {
+    "cd": "TCA",
+    "precipitation_projected": "-87 to 52"
+  },
+  {
+    "cd": "TCD",
+    "precipitation_projected": "-79 to 41"
+  },
+  {
+    "cd": "TGO",
+    "precipitation_projected": "-175 to 100"
+  },
+  {
+    "cd": "THA",
+    "precipitation_projected": "-109 to 76"
+  },
+  {
+    "cd": "TJK",
+    "precipitation_projected": "-46 to 27"
+  },
+  {
+    "cd": "TKM",
+    "precipitation_projected": "-32 to 12"
+  },
+  {
+    "cd": "TMP",
+    "precipitation_projected": "-123 to 206"
+  },
+  {
+    "cd": "TON",
+    "precipitation_projected": "-13 to 182"
+  },
+  {
+    "cd": "TTO",
+    "precipitation_projected": "-266 to 8"
+  },
+  {
+    "cd": "TUN",
+    "precipitation_projected": "-57 to -16"
+  },
+  {
+    "cd": "TUR",
+    "precipitation_projected": "-103 to -29"
+  },
+  {
+    "cd": "TUV",
+    "precipitation_projected": "9 to 651"
+  },
+  {
+    "cd": "TZA",
+    "precipitation_projected": "-9 to 167"
+  },
+  {
+    "cd": "UGA",
+    "precipitation_projected": "-13 to 224"
+  },
+  {
+    "cd": "UKR",
+    "precipitation_projected": "-43 to 31"
+  },
+  {
+    "cd": "UMC",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "URY",
+    "precipitation_projected": "0 to 130"
+  },
+  {
+    "cd": "USA",
+    "precipitation_projected": "-26 to 98"
+  },
+  {
+    "cd": "UZB",
+    "precipitation_projected": "-26 to 17"
+  },
+  {
+    "cd": "VCT",
+    "precipitation_projected": "-165 to 15"
+  },
+  {
+    "cd": "VEN",
+    "precipitation_projected": "-150 to 85"
+  },
+  {
+    "cd": "VIR",
+    "precipitation_projected": "-116 to 44"
+  },
+  {
+    "cd": "VNM",
+    "precipitation_projected": "-107 to 61"
+  },
+  {
+    "cd": "VUT",
+    "precipitation_projected": "-163 to 180"
+  },
+  {
+    "cd": "WBG",
+    "precipitation_projected": "-40 to -13"
+  },
+  {
+    "cd": "WLD",
+    "precipitation_projected": "n/a"
+  },
+  {
+    "cd": "WSM",
+    "precipitation_projected": "-41 to 196"
+  },
+  {
+    "cd": "YEM",
+    "precipitation_projected": "-24 to 51"
+  },
+  {
+    "cd": "ZAF",
+    "precipitation_projected": "-78 to 33"
+  },
+  {
+    "cd": "ZAR",
+    "precipitation_projected": "-48 to 128"
+  },
+  {
+    "cd": "ZMB",
+    "precipitation_projected": "-54 to 94"
+  },
+  {
+    "cd": "ZWE",
+    "precipitation_projected": "-81 to 24"
+  }
+]

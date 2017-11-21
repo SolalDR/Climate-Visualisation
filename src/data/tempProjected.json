@@ -1,0 +1,1167 @@
+[
+  {
+    "cd": "ABW",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 2.1"
+  },
+  {
+    "cd": "ADO",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.8"
+  },
+  {
+    "cd": "AFG",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 3.6"
+  },
+  {
+    "cd": "AGO",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.7"
+  },
+  {
+    "cd": "ALB",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.9"
+  },
+  {
+    "cd": "ARE",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 2.8"
+  },
+  {
+    "cd": "ARG",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 2.1"
+  },
+  {
+    "cd": "ARM",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.3"
+  },
+  {
+    "cd": "ASM",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.6"
+  },
+  {
+    "cd": "ATG",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "AUS",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.4"
+  },
+  {
+    "cd": "AUT",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.9"
+  },
+  {
+    "cd": "AZE",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.1"
+  },
+  {
+    "cd": "BDI",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.4"
+  },
+  {
+    "cd": "BEL",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 2.4"
+  },
+  {
+    "cd": "BEN",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.5"
+  },
+  {
+    "cd": "BFA",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 2.8"
+  },
+  {
+    "cd": "BGD",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.4"
+  },
+  {
+    "cd": "BGR",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.1"
+  },
+  {
+    "cd": "BHR",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.0"
+  },
+  {
+    "cd": "BHS",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "BIH",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.0"
+  },
+  {
+    "cd": "BLR",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 3.1"
+  },
+  {
+    "cd": "BLZ",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.6"
+  },
+  {
+    "cd": "BMU",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "BOL",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.0"
+  },
+  {
+    "cd": "BRA",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.6"
+  },
+  {
+    "cd": "BRB",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "BRN",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.9"
+  },
+  {
+    "cd": "BTN",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.0"
+  },
+  {
+    "cd": "BWA",
+    "attribute": "projected_temperature",
+    "value": "2.5 to 3.3"
+  },
+  {
+    "cd": "CAF",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.4"
+  },
+  {
+    "cd": "CAN",
+    "attribute": "projected_temperature",
+    "value": "2.6 to 3.5"
+  },
+  {
+    "cd": "CHE",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.8"
+  },
+  {
+    "cd": "CHI",
+    "attribute": "projected_temperature",
+    "value": ".."
+  },
+  {
+    "cd": "CHL",
+    "attribute": "projected_temperature",
+    "value": "1.2 to 1.9"
+  },
+  {
+    "cd": "CHN",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.0"
+  },
+  {
+    "cd": "CIV",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.4"
+  },
+  {
+    "cd": "CMR",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.4"
+  },
+  {
+    "cd": "COG",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.3"
+  },
+  {
+    "cd": "COK",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "COL",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.5"
+  },
+  {
+    "cd": "COM",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "CPV",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "CRI",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.3"
+  },
+  {
+    "cd": "CUB",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "CUW",
+    "attribute": "projected_temperature",
+    "value": ".."
+  },
+  {
+    "cd": "CYM",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "CYP",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.3"
+  },
+  {
+    "cd": "CZE",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.8"
+  },
+  {
+    "cd": "DEU",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.6"
+  },
+  {
+    "cd": "DJI",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.7"
+  },
+  {
+    "cd": "DMA",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "DNK",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.5"
+  },
+  {
+    "cd": "DOM",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "DZA",
+    "attribute": "projected_temperature",
+    "value": "2.4 to 3.0"
+  },
+  {
+    "cd": "EAP",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "ECA",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "ECU",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.3"
+  },
+  {
+    "cd": "EGY",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.4"
+  },
+  {
+    "cd": "EMU",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "ERI",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.7"
+  },
+  {
+    "cd": "ESP",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 2.6"
+  },
+  {
+    "cd": "EST",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 3.2"
+  },
+  {
+    "cd": "ETH",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.5"
+  },
+  {
+    "cd": "FIN",
+    "attribute": "projected_temperature",
+    "value": "2.4 to 3.7"
+  },
+  {
+    "cd": "FJI",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "FRA",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.6"
+  },
+  {
+    "cd": "FRO",
+    "attribute": "projected_temperature",
+    "value": "0.6 to 1.6"
+  },
+  {
+    "cd": "FSM",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "GAB",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.2"
+  },
+  {
+    "cd": "GBR",
+    "attribute": "projected_temperature",
+    "value": "1.1 to 1.8"
+  },
+  {
+    "cd": "GEO",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.0"
+  },
+  {
+    "cd": "GHA",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.4"
+  },
+  {
+    "cd": "GIB",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.7"
+  },
+  {
+    "cd": "GIN",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.6"
+  },
+  {
+    "cd": "GMB",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.7"
+  },
+  {
+    "cd": "GNB",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.2"
+  },
+  {
+    "cd": "GNQ",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.1"
+  },
+  {
+    "cd": "GRC",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.6"
+  },
+  {
+    "cd": "GRD",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.9"
+  },
+  {
+    "cd": "GRL",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.0"
+  },
+  {
+    "cd": "GTM",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.8"
+  },
+  {
+    "cd": "GUM",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "GUY",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.0"
+  },
+  {
+    "cd": "HIC",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "HKG",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.9"
+  },
+  {
+    "cd": "HND",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.6"
+  },
+  {
+    "cd": "HRV",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.9"
+  },
+  {
+    "cd": "HTI",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "HUN",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.0"
+  },
+  {
+    "cd": "IDN",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "IMY",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.8"
+  },
+  {
+    "cd": "IND",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.6"
+  },
+  {
+    "cd": "IRL",
+    "attribute": "projected_temperature",
+    "value": "0.9 to 1.4"
+  },
+  {
+    "cd": "IRN",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 3.3"
+  },
+  {
+    "cd": "IRQ",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 3.2"
+  },
+  {
+    "cd": "ISL",
+    "attribute": "projected_temperature",
+    "value": "0.9 to 2.3"
+  },
+  {
+    "cd": "ISR",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.7"
+  },
+  {
+    "cd": "ITA",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.6"
+  },
+  {
+    "cd": "JAM",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.8"
+  },
+  {
+    "cd": "JOR",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.9"
+  },
+  {
+    "cd": "JPN",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.3"
+  },
+  {
+    "cd": "KAZ",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 3.1"
+  },
+  {
+    "cd": "KEN",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.1"
+  },
+  {
+    "cd": "KGZ",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 3.2"
+  },
+  {
+    "cd": "KHM",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.0"
+  },
+  {
+    "cd": "KIR",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.0"
+  },
+  {
+    "cd": "KNA",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.8"
+  },
+  {
+    "cd": "KOR",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.3"
+  },
+  {
+    "cd": "KSV",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.1"
+  },
+  {
+    "cd": "KWT",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 3.1"
+  },
+  {
+    "cd": "LAC",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "LAO",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.4"
+  },
+  {
+    "cd": "LBN",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.9"
+  },
+  {
+    "cd": "LBR",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.2"
+  },
+  {
+    "cd": "LBY",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.4"
+  },
+  {
+    "cd": "LCA",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "LIC",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "LIE",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.8"
+  },
+  {
+    "cd": "LKA",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "LMC",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "LMY",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "LSO",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.5"
+  },
+  {
+    "cd": "LTU",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.0"
+  },
+  {
+    "cd": "LUX",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 2.5"
+  },
+  {
+    "cd": "LVA",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.1"
+  },
+  {
+    "cd": "MAC",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.9"
+  },
+  {
+    "cd": "MAF",
+    "attribute": "projected_temperature",
+    "value": ".."
+  },
+  {
+    "cd": "MAR",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.0"
+  },
+  {
+    "cd": "MCO",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.7"
+  },
+  {
+    "cd": "MDA",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.3"
+  },
+  {
+    "cd": "MDG",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.1"
+  },
+  {
+    "cd": "MDV",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "MEX",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.8"
+  },
+  {
+    "cd": "MHL",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "MIC",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "MKD",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.0"
+  },
+  {
+    "cd": "MLI",
+    "attribute": "projected_temperature",
+    "value": "2.5 to 3.1"
+  },
+  {
+    "cd": "MLT",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.1"
+  },
+  {
+    "cd": "MMR",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.3"
+  },
+  {
+    "cd": "MNA",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "MNE",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.9"
+  },
+  {
+    "cd": "MNG",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 3.1"
+  },
+  {
+    "cd": "MNP",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "MOZ",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.4"
+  },
+  {
+    "cd": "MRT",
+    "attribute": "projected_temperature",
+    "value": "2.4 to 3.1"
+  },
+  {
+    "cd": "MUS",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "MWI",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.5"
+  },
+  {
+    "cd": "MYS",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 1.9"
+  },
+  {
+    "cd": "MYT",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "NAM",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 2.9"
+  },
+  {
+    "cd": "NCL",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "NER",
+    "attribute": "projected_temperature",
+    "value": "2.4 to 2.8"
+  },
+  {
+    "cd": "NGA",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.5"
+  },
+  {
+    "cd": "NIC",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.4"
+  },
+  {
+    "cd": "NIU",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "NLD",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 2.3"
+  },
+  {
+    "cd": "NOR",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 3.3"
+  },
+  {
+    "cd": "NPL",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 3.4"
+  },
+  {
+    "cd": "NRU",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 2.1"
+  },
+  {
+    "cd": "NZL",
+    "attribute": "projected_temperature",
+    "value": "1.1 to 1.7"
+  },
+  {
+    "cd": "OMN",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.4"
+  },
+  {
+    "cd": "PAK",
+    "attribute": "projected_temperature",
+    "value": "2.4 to 3.4"
+  },
+  {
+    "cd": "PAN",
+    "attribute": "projected_temperature",
+    "value": "1.6 to 2.2"
+  },
+  {
+    "cd": "PER",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.7"
+  },
+  {
+    "cd": "PHL",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "PLW",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "PNG",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "POL",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.8"
+  },
+  {
+    "cd": "PRI",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "PRK",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.7"
+  },
+  {
+    "cd": "PRT",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 2.3"
+  },
+  {
+    "cd": "PRY",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.6"
+  },
+  {
+    "cd": "PYF",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "QAT",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 2.9"
+  },
+  {
+    "cd": "ROM",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.1"
+  },
+  {
+    "cd": "RUS",
+    "attribute": "projected_temperature",
+    "value": "2.6 to 3.7"
+  },
+  {
+    "cd": "RWA",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.4"
+  },
+  {
+    "cd": "SAS",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "SAU",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 2.9"
+  },
+  {
+    "cd": "SDN",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.6"
+  },
+  {
+    "cd": "SEN",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.7"
+  },
+  {
+    "cd": "SGP",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "SID",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "SLB",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "SLE",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.3"
+  },
+  {
+    "cd": "SLV",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.9"
+  },
+  {
+    "cd": "SMR",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 3.0"
+  },
+  {
+    "cd": "SOM",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.2"
+  },
+  {
+    "cd": "SRB",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.1"
+  },
+  {
+    "cd": "SSA",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "STP",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 2.0"
+  },
+  {
+    "cd": "SUR",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.9"
+  },
+  {
+    "cd": "SVK",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.9"
+  },
+  {
+    "cd": "SVN",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.0"
+  },
+  {
+    "cd": "SWE",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.1"
+  },
+  {
+    "cd": "SWZ",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.4"
+  },
+  {
+    "cd": "SXM",
+    "attribute": "projected_temperature",
+    "value": ".."
+  },
+  {
+    "cd": "SYC",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 1.8"
+  },
+  {
+    "cd": "SYR",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 3.1"
+  },
+  {
+    "cd": "TCA",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "TCD",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 2.6"
+  },
+  {
+    "cd": "TGO",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.5"
+  },
+  {
+    "cd": "THA",
+    "attribute": "projected_temperature",
+    "value": "1.7 to 2.1"
+  },
+  {
+    "cd": "TJK",
+    "attribute": "projected_temperature",
+    "value": "2.3 to 3.4"
+  },
+  {
+    "cd": "TKM",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 3.0"
+  },
+  {
+    "cd": "TMP",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "TON",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "TTO",
+    "attribute": "projected_temperature",
+    "value": "1.5 to 2.1"
+  },
+  {
+    "cd": "TUN",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.6"
+  },
+  {
+    "cd": "TUR",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.9"
+  },
+  {
+    "cd": "TUV",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.9"
+  },
+  {
+    "cd": "TZA",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.2"
+  },
+  {
+    "cd": "UGA",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.3"
+  },
+  {
+    "cd": "UKR",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 3.0"
+  },
+  {
+    "cd": "UMC",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "URY",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.8"
+  },
+  {
+    "cd": "USA",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.0"
+  },
+  {
+    "cd": "UZB",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 3.0"
+  },
+  {
+    "cd": "VCT",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 1.7"
+  },
+  {
+    "cd": "VEN",
+    "attribute": "projected_temperature",
+    "value": "1.8 to 2.9"
+  },
+  {
+    "cd": "VIR",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "VNM",
+    "attribute": "projected_temperature",
+    "value": "1.4 to 2.1"
+  },
+  {
+    "cd": "VUT",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.7"
+  },
+  {
+    "cd": "WBG",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.6"
+  },
+  {
+    "cd": "WLD",
+    "attribute": "projected_temperature",
+    "value": "n/a"
+  },
+  {
+    "cd": "WSM",
+    "attribute": "projected_temperature",
+    "value": "1.3 to 1.6"
+  },
+  {
+    "cd": "YEM",
+    "attribute": "projected_temperature",
+    "value": "2.0 to 2.6"
+  },
+  {
+    "cd": "ZAF",
+    "attribute": "projected_temperature",
+    "value": "1.9 to 2.7"
+  },
+  {
+    "cd": "ZAR",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.4"
+  },
+  {
+    "cd": "ZMB",
+    "attribute": "projected_temperature",
+    "value": "2.1 to 2.7"
+  },
+  {
+    "cd": "ZWE",
+    "attribute": "projected_temperature",
+    "value": "2.2 to 2.9"
+  }
+]

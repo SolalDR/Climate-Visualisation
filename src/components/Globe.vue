@@ -50,7 +50,7 @@ export default {
     this.initEvents();      // Events (mousemove, resize)
     this.initRaycaster();   // Raycaster
 
-    this.renderer.animate( this.render.bind(this) );
+    this.render();
   },
 
   methods: {
@@ -131,11 +131,13 @@ export default {
     showDetail: function(cd) {
       this.cd = cd;
       this.detailActive = true;
+      cancelAnimationFrame(this.raf);
     },
 
     hideDetail: function() {
       this.cd = null;
       this.detailActive = false;
+      this.render();
     },
 
     ///////////////////////////////////
@@ -151,6 +153,7 @@ export default {
       this.earth.update(this.counter, this.target);
 
       this.renderer.render( this.scene, this.camera );
+      this.raf = requestAnimationFrame( this.render.bind(this) );
     },
 
 
