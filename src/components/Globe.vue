@@ -21,7 +21,15 @@ export default {
 
   data: function () {
     return {
-      canvas: null
+      canvas: null,
+      scene: null,
+      renderer: null,
+      controls: null,
+      raycaster: null,
+      mouse: null,
+      earth: null,
+      blob: null,
+      castLine: null
     }
   },
 
@@ -84,6 +92,8 @@ export default {
     },
 
     initScene: function() {
+
+
         this.canvas = this.$el.querySelector( '#canvas' );
         this.scene = new Scene();
         this.renderer = new WebGLRenderer( { antialias: true, alpha: 1 } );
@@ -100,7 +110,6 @@ export default {
     initRaycaster: function() {
         this.raycaster = new Raycaster();
         this.mouse = new Vector2();
-
         this.earth.createCasterHelper();
         this.scene.add(this.earth.casterHelper);
     },
@@ -137,7 +146,7 @@ export default {
     mouseCall: function() {
         // calculate objects intersecting the picking ray
         var intersects = this.raycaster.intersectObjects( this.scene.children );
-        console.log("Intersect Count", this.raycaster, intersects.count)
+        // console.log("Intersect Count", this.raycaster, intersects.count)
         // console.log(intersects)
         for(var i=0; i<intersects.length; i++) {
             if(intersects[i].object.name == "CasterTarget") {

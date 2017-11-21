@@ -9,7 +9,7 @@ Vue.use(Bourgeon, {
 })
 
 /* eslint-disable no-new */
-new Vue({
+window.app = new Vue({
   render: h => h(App)
 }).$mount('#app')
 
