@@ -12,7 +12,6 @@
 <script>
 
 import datas from "./../data/elevation.js";
-
 import GeoUtil from './../models/GeoUtil';
 import Blob from './../models/Blob';
 import Earth from "./../models/Earth";
@@ -31,6 +30,7 @@ export default {
       canvas: null,
       detailActive: false,
       cd: null,
+      year: null,
       geoCoord: null
     }
   },
@@ -50,7 +50,7 @@ export default {
     this.initEvents();      // Events (mousemove, resize)
     this.initRaycaster();   // Raycaster
 
-    this.render();
+    this.renderer.animate( this.render.bind(this) );
   },
 
   methods: {
@@ -131,13 +131,11 @@ export default {
     showDetail: function(cd) {
       this.cd = cd;
       this.detailActive = true;
-      cancelAnimationFrame(this.raf);
     },
 
     hideDetail: function() {
       this.cd = null;
       this.detailActive = false;
-      this.render();
     },
 
     ///////////////////////////////////
@@ -153,7 +151,6 @@ export default {
       this.earth.update(this.counter, this.target);
 
       this.renderer.render( this.scene, this.camera );
-      this.raf = requestAnimationFrame( this.render.bind(this) );
     },
 
 

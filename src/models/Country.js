@@ -12,8 +12,9 @@ class Country {
 		this.nameShort = properties.name_short;
 		this.name = properties.format_fr !== null ? properties.format_fr : properties.format_en;
 		this.pib = properties.gdp_md_est ? properties.gdp_md_est : null;
-		this.pop = properties.pop_est;
+    this.pop = properties.pop_projected;
 		this.economy = properties.economy;
+    this.zoom = properties.level;
     this.coordMap = null;
 		this.concatCoords();
 	}

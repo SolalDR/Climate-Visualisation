@@ -12,7 +12,12 @@ const state = {
   countries: geoData.countries,
   geocode: "AIzaSyBnwbe8HJoZudRFjADyOYmIFBTsK3JMc4U",
   coord: { lat: 0, lon: 0 },
-  firstTime: true
+  firstTime: true,
+  year: null,
+  limits: {
+    co2: [-33.4, 149],
+    co2Global: [-33.4, 149]
+  }
 }
 
 const mutations = {

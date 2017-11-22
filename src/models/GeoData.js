@@ -58,3 +58,4 @@ class GeoData {
 }
 
 export default GeoData
+

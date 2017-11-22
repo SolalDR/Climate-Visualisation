@@ -1,8 +1,8 @@
 <template>
   <div class="map" v-if="load">
-    <strate :type="'co2'" :rank="0" :total="2" :country="country" :geojson="geojson"></strate>
-    <strate :type="'pop'" :rank="1" :total="2" :country="country" :geojson="geojson"></strate>
-    <strate :type="'map'" :rank="2" :total="2" :country="country" :geojson="geojson"></strate>
+    <strate :type="'co2'" :rank="0" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
+    <strate :type="'pop'" :rank="1" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
+    <strate :type="'map'" :rank="2" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
   </div>
 </template>
 

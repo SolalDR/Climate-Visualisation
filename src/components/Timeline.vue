@@ -15,7 +15,7 @@ export default {
     return {
       range: null,
       valueEl: null,
-      current: 1990,
+      value: 1990,
       start: 1990,
       end: 2100
     }
@@ -28,6 +28,7 @@ export default {
     update: function(val){
       this.value = this.range.value;
       this.valueEl.innerHTML = this.value;
+      this.$store.state.year = this.value;
     }
   }
 }
