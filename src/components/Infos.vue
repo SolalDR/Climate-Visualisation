@@ -24,7 +24,7 @@
 
 <script>
   export default {
-    props: ["active", "year", "elevation"],
+    props: ["active", "year", "elevation", "globeTemp"],
     computed: {
       pop: function(){
         if(this.$store.state.currentCountry.pop){
@@ -44,7 +44,7 @@
         if( this.active && this.$store.state.currentCountry.temperatures ){
           return this.round(this.$store.state.currentCountry.temperatures[this.$store.state.year] - 0.01, 2)
         } else {
-          return null
+          return this.globeTemp;
         }
       }
     },

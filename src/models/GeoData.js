@@ -1,6 +1,7 @@
 import Country from "./Country";
 import Request from "./Request";
 import Water from "./../data/precipitation.gen.js";
+import Temperature from "./../data/temperature-earth.gen.js";
 
 class GeoData {
 
@@ -15,6 +16,10 @@ class GeoData {
       max: 32.435,
       datas: Water
     }
+  }
+
+  static getTemperature(){
+    return Temperature
   }
 
   genFormatData(geojson) {

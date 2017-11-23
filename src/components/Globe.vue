@@ -5,9 +5,9 @@
         <p id="coord-display"></p>
         <div id="canvas" class="globe" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
       </div>
-      <infos :active="detailActive" :elevation="elevation" :temperature="temperature" :year="year"></infos>
+      <infos :active="detailActive" :elevation="elevation" :globeTemp="temperature" :year="year"></infos>
       <detail v-if="detailActive && cd" :cd="cd" :coord="detailCoord" @close="hideDetail"></detail>
-      <timeline @update="updateTimeline"></timeline>
+      <timeline @update="updateFromYear"></timeline>
   </div>
 </template>
 
@@ -57,6 +57,7 @@ export default {
     this.initRaycaster();   // Raycaster
     this.now = Date.now();
     this.renderer.animate( this.render.bind(this) );
+    this.updateFromYear(2017)
   },
 
   methods: {
@@ -97,6 +98,7 @@ export default {
       this.earth.initObject3d();
       this.scene.add(this.earth.mesh);
       this.elevations = GeoData.getWaterElevation();
+      this.temperatures = GeoData.getTemperature();
       this.blob = new Blob(this.scene, firstTime, this.elevations);
       if( firstTime ){
         this.$store.state.firstTime = false;
@@ -104,7 +106,6 @@ export default {
             this.blob.toScale(1, 10);
         })
       }
-
     },
 
     initScene: function() {
@@ -120,8 +121,8 @@ export default {
       this.cameraMover = new CameraMover(this.camera);
       this.camera.lookAt(new THREE.Vector3());
       this.controls = new OrbitControls( this.camera );
-      this.controls.update();
-      this.controls.noPan = false;
+      this.controls.enablePan = false;
+
     },
 
     initRaycaster: function() {
@@ -174,7 +175,6 @@ export default {
       this.blob.update(this.counter)
       this.earth.update(this.counter, this.target);
       this.cameraMover.update(delta)
-
       this.renderer.render( this.scene, this.camera );
     },
 
@@ -183,9 +183,10 @@ export default {
     //              Events
     ///////////////////////////////////
 
-    updateTimeline(val) {
+    updateFromYear(val) {
       this.year = val;
       this.elevation = Math.floor(this.elevations.datas[val]*100)/100;
+      this.temperature = Math.floor(this.temperatures[val]*100)/100;
       this.blob.scaleFromYear(val);
     },
 
@@ -219,8 +220,7 @@ export default {
           this.launchWarning("Il n'existe pas de données sur ces coordonnées", 5000);
         }
       });
-      // this.controls.enabled = true
-      // this.controls.update();
+      this.controls.enableRotate = true
     },
 
     onMouseMove: function( event ) {
@@ -235,9 +235,8 @@ export default {
     onMouseUp: function(event){
       if( this.rayCoord && this.lastMouseDown && Date.now() - this.lastMouseDown < 100 ) {
         this.lastMouseDown = null;
-        this.controls.enabled = false;
+        this.controls.enableRotate = false;
         this.cameraMover.moveTo(this.rayCoord)
-
       }
     },
     onWindowResize: function() {
