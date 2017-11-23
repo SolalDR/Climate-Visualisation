@@ -53,10 +53,18 @@ def completeData (min, max, datas)
       # puts results[m[:next].to_i].to_s + " => " + results[m[:last]].to_s
       coefLocal = (results[m[:next]].to_f - results[m[:last]].to_f) / (m[:next].to_f - m[:last].to_f)
       results[m[:year]] = results[m[:last]].to_f + coefLocal * (m[:year] - m[:last]).to_f
+      results[m[:year]] = (results[m[:year]]*1000.0).floor/1000.0
     else
       if minExist != nil && maxExist != nil
         coefGlobal = (results[maxExist].to_f - results[minExist].to_f) / (maxExist.to_f - minExist.to_f)
-        results[m[:year]] = results[minExist].to_f + coefGlobal * (m[:year] - maxExist).to_f
+
+        if minExist > m[:year]
+          results[m[:year]] = results[minExist].to_f + coefGlobal * (m[:year] - maxExist).to_f
+        else
+          results[m[:year]] = results[maxExist].to_f + coefGlobal * (m[:year] - maxExist).to_f
+        end
+
+        results[m[:year]] = (results[m[:year]]*1000.0).floor/1000.0
       end
     end
   end
