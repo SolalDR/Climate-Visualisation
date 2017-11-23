@@ -2,8 +2,8 @@
   <div class="range-slider__container">
     <div class="range-slider">
       <span class="range-slider__limit range-slider__start">{{ start }}</span>
-      <input class="range-slider__range" @input.stop="update" @mousedown.stop="" type="range" :value="current" :min="start" :max="end">
-      <span class="range-slider__value">{{ current }}</span>
+      <input class="range-slider__range" @input.stop="update" @mousedown.stop="" type="range" :value="value" :min="start" :max="end">
+      <span class="range-slider__value">{{ value }}</span>
       <span class="range-slider__limit range-slider__end">{{ end }}</span>
     </div>
   </div>
@@ -15,7 +15,7 @@ export default {
     return {
       range: null,
       valueEl: null,
-      value: 1990,
+      value: 2017,
       start: 1990,
       end: 2100
     }
@@ -23,12 +23,14 @@ export default {
   mounted: function(){
     this.valueEl = this.$el.querySelector('.range-slider__value')
     this.range = this.$el.querySelector('.range-slider__range')
+    this.$store.state.year = this.value;
   },
   methods: {
     update: function(val){
       this.value = this.range.value;
       this.valueEl.innerHTML = this.value;
       this.$store.state.year = this.value;
+      this.$emit("update", this.value);
     }
   }
 }

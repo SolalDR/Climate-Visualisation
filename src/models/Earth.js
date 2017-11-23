@@ -9,7 +9,9 @@ import {Vector3, Vector2, Mesh, SphereGeometry, MeshStandardMaterial, LineBasicM
 
 class Earth extends Event {
 
-	static get SIZE(){ return 6371 ;}
+  //http://climatedataapi.worldbank.org/climateweb/rest/v1/country/annualavg/tas/1961/1999/FRA
+
+  static get SIZE(){ return 6371 ;}
 	static get STYLE_POINT(){ return 1 ;}
 	static get STYLE_TRIANGLE(){ return 2 ;}
 	static get MESS_STATE() {return 3; }

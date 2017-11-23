@@ -1,10 +1,20 @@
 import Country from "./Country";
 import Request from "./Request";
+import Water from "./../data/precipitation.gen.js";
 
 class GeoData {
 
   constructor(geojson) {
     this.genFormatData(geojson);
+  }
+
+
+  static getWaterElevation() {
+    return {
+      min: 0,
+      max: 32.435,
+      datas: Water
+    }
   }
 
   genFormatData(geojson) {

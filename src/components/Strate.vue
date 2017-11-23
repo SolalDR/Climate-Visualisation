@@ -28,14 +28,28 @@ export default {
     },
     style: function(){
       if( this.decal && this.opacity ){
-        return `transform: translateZ(${this.decal}px); opacity:${this.opacity};`;
+        return `transform: scale(${this.scale}) translateY(${this.translateY}px) rotateX(${this.rotateX}deg) rotateZ(${this.rotateZ}deg) translateZ(${this.decal}px); opacity:${this.opacity};`;
       }
       return null
     },
+
+    scale: {
+      get: function(){
+        if(this.type == 'co2') {
+          var prop = this.$store.state.limits.co2[2] / (this.value - this.$store.state.limits.co2[0]) * this.country.pop[this.$store.state.year]/10000;
+          return Math.min(2.5, Math.max(0.5, prop));
+        }
+        return 1;
+      }
+    },
+
     opacity: {
       get:function(){
+
         if(this.type == 'co2') {
-          return 3*(this.$store.state.limits.co2[1] - this.$store.state.limits.co2[0]) / (this.value - this.$store.state.limits.co2[0]) ;
+
+          return this.$store.state.limits.co2[2] / (this.value - this.$store.state.limits.co2[0]) * 5;
+
         } else {
           if ( this.compressState ) {
             return 0;
@@ -43,6 +57,7 @@ export default {
             return 1;
           }
         }
+
         return null
       }
     }
@@ -57,6 +72,9 @@ export default {
       boundary: null,
       radius: 2,
       rat: 100,
+      rotateX: 0,
+      rotateZ: 0,
+      translateY: 0,
       geoJsonOptions: {
         style: {
           "color": "#ff7800",
@@ -70,9 +88,8 @@ export default {
 
   mounted: function() {
     this.decompress();
-    setInterval(() => {
-      this.state = this.state == 10 ? 1 : this.state+1;
-    }, 4000)
+    this.toggleState();
+    setInterval( this.toggleState.bind(this), 4000)
     if(this.$refs.map)
       this.$refs.map.mapObject.dragging.disable();
 
@@ -89,9 +106,12 @@ export default {
 
   methods: {
 
+    toggleState(){
+      this.state = this.state == 10 ? 1 : this.state+1;
+    },
+
     removeRandomCircle: function(n, circles) {
       var circle, rank;
-      console.log("remove circle", n)
       for(var i=0; i<n; i++) {
         rank = Math.floor(Math.random()*circles.length);
         circle = circles[rank];
@@ -103,10 +123,8 @@ export default {
 
     addRandomCircle: function(n){
       var circle;
-      var ns = "http://www.w3.org/2000/svg";
-      // console.log("Add circle", n)
       for(var i=0; i<n; i++) {
-        circle = document.createElementNS(ns, "circle")
+        circle = document.createElementNS("http://www.w3.org/2000/svg", "circle")
         circle.setAttribute("r", this.radius)
         circle.setAttribute("cx", this.boundary.x+Math.random()*this.boundary.width)
         circle.setAttribute("cy", this.boundary.y+Math.random()*this.boundary.height)
@@ -117,15 +135,9 @@ export default {
     },
 
     updateCircles(){
-
       var currentPop = this.country.pop ? this.country.pop[this.value] : 0;
       var circles = this.svg.getElementsByTagName("circle");
-
-      var lExpected = Math.floor(currentPop/this.rat);
-      var lActual = circles.length;
-      // console.log(lExpected, lActual)
-      var diff = lExpected - lActual;
-
+      var diff = Math.floor(currentPop/this.rat) - circles.length;
       if( diff >= 0 ){
         this.addRandomCircle(diff);
       } else {
@@ -134,21 +146,21 @@ export default {
     },
 
     managePopulation: function() {
-
-      var ns = "http://www.w3.org/2000/svg";
       this.svg = this.$el.querySelector("svg.leaflet-zoom-animated");
       var pathEl = this.$el.querySelector(".leaflet-zoom-animated path");
-      var g = this.$el.querySelector(".leaflet-zoom-animated g");
-      var mask = document.createElementNS(ns, "mask");
-      var defs = document.createElementNS(ns, "defs");
+      var mask = document.createElementNS("http://www.w3.org/2000/svg", "mask");
+      var defs = document.createElementNS("http://www.w3.org/2000/svg", "defs");
       defs.appendChild(mask)
       mask.setAttribute("id", "countryMask")
-      g.appendChild(defs)
-      var maskPath = pathEl.cloneNode(true);
-      mask.appendChild(maskPath)
+
+      // Add defs to g
+      this.$el.querySelector(".leaflet-zoom-animated g").appendChild(defs)
+
+      mask.appendChild(pathEl.cloneNode(true))
       this.boundary = pathEl.getBBox();
 
       var startCount = this.country.pop["2010"]
+
       if(startCount < 200000) {
         this.radius = 2;
         this.rat = 100;
@@ -160,13 +172,13 @@ export default {
         this.rat = 1600;
       }
 
-      console.log(this.radius, this.rat)
       this.updateCircles();
-
     },
 
     manageCO2: function() {
-
+      this.rotateX = -60
+      this.rotateZ = -10
+      this.translateY = -50
     },
 
     compress: function() {
@@ -204,7 +216,7 @@ export default {
   &--map
 
   &--co2
-    transform: translateZ(100px) rotateX(-70deg) rotateZ(-7deg) !important
+    //transform: translateZ(100px) rotateX(-70deg) rotateZ(-7deg) !important
     opacity: 1
     background-color: transparent
     height: 200px
@@ -224,7 +236,7 @@ export default {
       background-repeat: no-repeat
       background-size: contain
       background-position: center
-      transition: all 4s
+      transition: all 10s
     &::after
       background-image: url('./../assets/nuage2.png')
     &::before
@@ -233,11 +245,11 @@ export default {
 @for $i from 1 to 10
   .strate--co2-#{$i}
     &::after
-      top: random(30) + px
-      left: random(50) + px
+      top: random(50) + px
+      left: random(80) + px
     &::before
-      top: random(30) + px
-      left: random(50) + px
+      top: random(50) + px
+      left: random(80) + px
 
 
 .leaflet-container

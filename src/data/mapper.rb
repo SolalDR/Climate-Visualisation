@@ -68,7 +68,8 @@ end
 countries = JSON.parse(File.read(__dir__+'/earth.json'))
 co2 = JSON.parse(File.read(__dir__+'/co2.json'))
 pop11 = JSON.parse(File.read(__dir__+'/pop11.json'))
-
+temps = JSON.parse(File.read(__dir__+'/temperature.json'))
+precipitation = JSON.parse(File.read(__dir__+'/precipitation.json'))
 
 countries["features"].each do |c|
   co2.each do |co2I|
@@ -83,7 +84,16 @@ countries["features"].each do |c|
       c["properties"]["pop_projected"] = completeData(1990, 2100, pop11I)
     end
   end
+  temps.each do |temp|
+    if temp["cd"] == c["properties"]["gu_a3"]
+      c["properties"]["temperatures"] = []
+      c["properties"]["temperatures"] = completeData(1990, 2100, temp)
+    end
+  end
 end
+
+fileEarth = File.open(__dir__+"/precipitation.gen.js", "w");
+fileEarth.write("export default " + completeData(1990, 2100, precipitation).to_json);
 
 file = File.open(__dir__+"/co2.proj.json", "w")
 file.write(countries.to_json)

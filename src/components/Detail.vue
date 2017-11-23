@@ -27,6 +27,10 @@ export default {
 
   created: function () {
     this.country = this.$store.state.countries[this.cd];
+    if( !this.country ){
+      this.close();
+      return;
+    }
     this.country.coordMap = this.coord;
   },
 

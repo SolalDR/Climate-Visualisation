@@ -1,14 +1,15 @@
 import vertex from './../glsl/blob/shader.vert'
 import fragment from './../glsl/blob/shader.frag'
+import Easing from './Easing';
 
 import {Vector3, Vector2, Mesh, SphereGeometry, MeshStandardMaterial, LineBasicMaterial, Geometry, Line, BufferGeometry, BufferAttribute, ShaderMaterial, Points} from 'three';
 
 class Blob {
 
-  constructor(scene, firstTime) {
+  constructor(scene, firstTime, elevation) {
     this.counter = 0;
     this.geometry = new SphereGeometry( 3, 32, 32 );
-
+    this.elevation = elevation;
     var uniforms = {
       u_time: { type: "f", value: 0 },
       u_rat: { type: "f", value: 5.},
@@ -37,6 +38,11 @@ class Blob {
     scene.add( this.mesh2 );
   }
 
+  scaleFromYear(year) {
+    var scale = 1 + 0.4 * ((this.elevation.datas[year] - this.elevation.min) / (this.elevation.max - this.elevation.min));
+    this.toScale(scale, 2)
+  }
+
   toScale(target, duration){
     this.animation = {
       start: this.counter,
@@ -49,12 +55,12 @@ class Blob {
 
   animate() {
     if(this.animation != null) {
-      var advance = (this.counter - this.animation.start) / this.animation.duration;
+      var advance = Easing.easeOutQuad((this.counter - this.animation.start) / this.animation.duration);
       var value = this.animation.from + (this.animation.to - this.animation.from) * advance
-      if( advance > 1 ) 
+      if( advance >= 1 ) 
         this.animation = null;
-       this.material.uniforms.u_radius.value = value;
-       this.material2.uniforms.u_radius.value = value;
+        this.material.uniforms.u_radius.value = value;
+        this.material2.uniforms.u_radius.value = value;
     }
   }
 

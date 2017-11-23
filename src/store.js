@@ -15,7 +15,7 @@ const state = {
   firstTime: true,
   year: null,
   limits: {
-    co2: [-33.4, 149],
+    co2: [-33.4, 149, 149 + 33.4],
     co2Global: [-33.4, 149]
   }
 }
