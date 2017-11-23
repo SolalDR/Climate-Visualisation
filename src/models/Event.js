@@ -5,18 +5,16 @@ class Event {
   }
 
   eventExist(event, callback){
-    var exist = false; 
+    var exist = false;
     if( this.events[event] ) {
       for(var i=0; i<this.events[event].length; i++){
         if( this.events[event] == callback ){
-          exist = true; 
+          exist = true;
         }
       }
     }
-    return exist; 
+    return exist;
   }
-
-
 
   dispatch(e){
     var list = e instanceof Array ? e : [e];
@@ -27,7 +25,7 @@ class Event {
           callback.call(this);
         }
       }
-    } 
+    }
   }
 
   on(event, callback){

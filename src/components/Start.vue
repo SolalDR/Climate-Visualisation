@@ -6,7 +6,6 @@
         <div class="text-center">
           <router-link class="start__button" to="/globe">Commencer</router-link>
         </div>
-
       </div>
       <div class="start__credit">
 
@@ -35,7 +34,7 @@ h1
   &__container
     width: 60%
     min-width: 300px
-    max-width: 900px
+    max-width: 600px
     margin: auto
     display: inline-block
     text-align: left

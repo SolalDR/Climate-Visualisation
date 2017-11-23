@@ -3,7 +3,6 @@
     <div class="range-slider">
       <span class="range-slider__limit range-slider__start">{{ start }}</span>
       <input class="range-slider__range" @input.stop="update" @mousedown.stop="" type="range" :value="value" :min="start" :max="end">
-      <span class="range-slider__value">{{ value }}</span>
       <span class="range-slider__limit range-slider__end">{{ end }}</span>
     </div>
   </div>
@@ -11,6 +10,7 @@
 
 <script>
 export default {
+
   data: function(){
     return {
       range: null,
@@ -20,19 +20,20 @@ export default {
       end: 2100
     }
   },
+
   mounted: function(){
-    this.valueEl = this.$el.querySelector('.range-slider__value')
     this.range = this.$el.querySelector('.range-slider__range')
     this.$store.state.year = this.value;
   },
+
   methods: {
     update: function(val){
       this.value = this.range.value;
-      this.valueEl.innerHTML = this.value;
       this.$store.state.year = this.value;
       this.$emit("update", this.value);
     }
   }
+
 }
 </script>
 
@@ -41,18 +42,20 @@ export default {
 <style lang="scss">
   // Base Colors
 $shade-10: #2c3e50 !default;
-$shade-1: #d7dcdf !default;
+$shade-1: #000000 !default;
 $shade-0: #fff !default;
 $teal: #1abc9c !default;
 
 .range-slider__limit {
   position: absolute;
+  top: 0px;
+  font-size: 25px;
 }
 .range-slider__start {
-  left: -50px;
+  left: -70px;
 }
 .range-slider__end {
-  right: -50px;
+  right: -70px;
 }
 
 // Reset
@@ -74,21 +77,20 @@ body {
 }
 
 .range-slider {
-  margin: 60px 0 0 0%;
+  margin: 0;
 }
-
 
 // Range Slider
 $range-width: 100% !default;
 
-$range-handle-color: $shade-10 !default;
-$range-handle-color-hover: $teal !default;
+$range-handle-color: #9cc6f0 !default;
+$range-handle-color-hover: darken(#9cc6f0, 10%) !default;
 $range-handle-size: 20px !default;
 
 $range-track-color: $shade-1 !default;
-$range-track-height: 10px !default;
+$range-track-height: 5px !default;
 
-$range-label-color: $shade-10 !default;
+$range-label-color: #9cc6f0 !default;
 $range-label-width: 60px !default;
 
 .range-slider {
@@ -96,16 +98,20 @@ $range-label-width: 60px !default;
 }
 
 .range-slider__container {
-  width: 70%;
+  width: 100%;
   position: fixed;
-  bottom: 8vh;
-  left: 15%;
+  bottom: 0;
+  left: 0;
+  padding: 45px 15%;
   z-index: 999;
+  height: 100px;
+  box-sizing: border-box;
+  border-top: 2px solid black;
 }
 
 .range-slider__range {
   -webkit-appearance: none;
-  width: calc(100% - (#{$range-label-width + 13px}));
+  width: 100%;
   height: $range-track-height;
   border-radius: 5px;
   background: $range-track-color;

@@ -14,6 +14,7 @@ const state = {
   coord: { lat: 0, lon: 0 },
   firstTime: true,
   year: null,
+  currentCountry: null,
   limits: {
     co2: [-33.4, 149, 149 + 33.4],
     co2Global: [-33.4, 149]

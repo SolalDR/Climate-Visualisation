@@ -5,6 +5,7 @@
         <p id="coord-display"></p>
         <div id="canvas" class="globe" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
       </div>
+      <infos :active="detailActive" :elevation="elevation" :temperature="temperature" :year="year"></infos>
       <detail v-if="detailActive && cd" :cd="cd" :coord="detailCoord" @close="hideDetail"></detail>
       <timeline @update="updateTimeline"></timeline>
   </div>
@@ -19,12 +20,13 @@ import Earth from "./../models/Earth";
 import GeoData from "./../models/GeoData";
 import OrbitControls from './../models/OrbitControls';
 import Detail from './Detail';
+import Infos from './Infos';
 import Timeline from "./Timeline";
 import CameraMover from "./../models/CameraMover";
 
 export default {
 
-  components: { Detail, Timeline },
+  components: { Detail, Timeline, Infos },
 
   data: function () {
     return {
@@ -33,7 +35,9 @@ export default {
       cd: null,
       rayCoord: null,
       warning: null,
-      detailCoord: null
+      detailCoord: null,
+      elevation: 0,
+      year: 0
     }
   },
 
@@ -92,7 +96,8 @@ export default {
       });
       this.earth.initObject3d();
       this.scene.add(this.earth.mesh);
-      this.blob = new Blob(this.scene, firstTime, GeoData.getWaterElevation());
+      this.elevations = GeoData.getWaterElevation();
+      this.blob = new Blob(this.scene, firstTime, this.elevations);
       if( firstTime ){
         this.$store.state.firstTime = false;
         this.earth.on('noiseEnd', () => {
@@ -179,6 +184,8 @@ export default {
     ///////////////////////////////////
 
     updateTimeline(val) {
+      this.year = val;
+      this.elevation = Math.floor(this.elevations.datas[val]*100)/100;
       this.blob.scaleFromYear(val);
     },
 
@@ -265,4 +272,5 @@ export default {
       transform: translateY(0)
     &--hide
       transform: translateY(-100%)
+
 </style>

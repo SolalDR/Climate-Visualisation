@@ -1,7 +1,6 @@
 <template>
   <div class="detail">
-    <h1>{{ country.nameLong }}</h1>
-    <h2>{{ country.cd }}</h2>
+    <h1 class="detail__title">{{ country.nameLong }}</h1>
     <button class="detail__back" @click="close"></button>
     <div class="map__container">
       <map3d :country="country"></map3d>
@@ -19,6 +18,7 @@ export default {
   components: { Map3d },
 
   props: ["cd", "coord"],
+
   data: function () {
     return {
       country: {}
@@ -32,6 +32,7 @@ export default {
       return;
     }
     this.country.coordMap = this.coord;
+    this.$store.state.currentCountry = this.country;
   },
 
   methods: {
@@ -56,5 +57,11 @@ export default {
     height: 50px
     width: 50px
     background-color: #CCC
+
+  &__title
+    margin-top: 30px
+    text-transform: uppercase
+    font-weight: normal
+    font-size: 60px
 
 </style>
