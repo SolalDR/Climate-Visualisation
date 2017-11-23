@@ -1,13 +1,27 @@
 <template>
   <div class="start" @mousemove="onMouseMove" >
-      <p id="warning" v-if="warning">{{ warning }}</p>
-      <div class="globe__container" :class="canvasClass">
-        <p id="coord-display"></p>
-        <div id="canvas" class="globe" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
-      </div>
-      <infos :active="detailActive" :elevation="elevation" :globeTemp="temperature" :year="year"></infos>
-      <detail v-if="detailActive && cd" :cd="cd" :coord="detailCoord" @close="hideDetail"></detail>
-      <timeline @update="updateFromYear"></timeline>
+      <transition name="fade" appear>
+        <p id="warning" v-if="warning">{{ warning }}</p>
+      </transition>
+
+      <transition name="fade" appear v-on:after-enter="firstRender">
+        <div class="globe__container" :class="canvasClass">
+          <p id="coord-display">{{ coordsDisplay }}</p>
+          <div id="canvas" class="globe" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
+        </div>
+      </transition>
+
+      <transition name="slide-left" appear>
+        <infos :detailActive="detailActive" :elevation="elevation" :globeTemp="temperature" :year="year"></infos>
+      </transition>
+
+      <transition name="fade-long" appear>
+        <detail v-if="detailActive && cd" :cd="cd" :coord="detailCoord" @close="hideDetail"></detail>
+      </transition>
+
+      <transition name="slide-bottom" appear>
+        <timeline @update="updateFromYear"></timeline>
+      </transition>
   </div>
 </template>
 
@@ -44,6 +58,13 @@ export default {
   computed: {
     canvasClass: function(){
       return this.detailActive ? "globe__container--hide" : "globe__container--display"
+    },
+    coordsDisplay: function(){
+      if( this.rayCoord ){
+        return Math.floor(this.rayCoord.lon*10)/10+ " | "+Math.floor(this.rayCoord.lat*10)/10
+      } else {
+        return "";
+      }
     }
   },
 
@@ -56,11 +77,15 @@ export default {
     this.initEvents();      // Events (mousemove, resize)
     this.initRaycaster();   // Raycaster
     this.now = Date.now();
-    this.renderer.animate( this.render.bind(this) );
     this.updateFromYear(2017)
+
   },
 
   methods: {
+
+    firstRender: function() {
+      this.renderer.animate( this.render.bind(this) );
+    },
 
     /////////////////////////////////////
     //      INITIALISATION
@@ -103,7 +128,8 @@ export default {
       if( firstTime ){
         this.$store.state.firstTime = false;
         this.earth.on('noiseEnd', () => {
-            this.blob.toScale(1, 10);
+          this.blob.toScale(1, 10);
+          this.init = true;
         })
       }
     },
@@ -187,7 +213,8 @@ export default {
       this.year = val;
       this.elevation = Math.floor(this.elevations.datas[val]*100)/100;
       this.temperature = Math.floor(this.temperatures[val]*100)/100;
-      this.blob.scaleFromYear(val);
+      if( this.blob.init )
+        this.blob.scaleFromYear(val)
     },
 
     mouseCall: function() {
@@ -200,10 +227,8 @@ export default {
                 .copy(intersects[i].point)
                 .applyAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI/2 )
 
-                if(!this.cameraMover.animate) {
+                if(!this.cameraMover.animate)
                   this.rayCoord = this.earth.getGeoCoord(this.target);
-                  this.coordDisplay.innerHTML = Math.floor(this.rayCoord.lon*10)/10+ " | "+Math.floor(this.rayCoord.lat*10)/10
-                }
 
                 break;
             }
@@ -271,5 +296,22 @@ export default {
       transform: translateY(0)
     &--hide
       transform: translateY(-100%)
+
+
+.slide-left-enter-active, .slide-bottom-enter-active, .slide-left-leave-active, .slide-bottom-leave-active, .fade-enter-active, .fade-leave-active
+  transition: .5s
+
+.fade-long-enter-active, .fade-long-enter-active
+  transition: 2s
+
+
+.slide-left-enter, .slide-left-leave-to /* .fade-leave-active below version 2.1.8 */
+  transform: translateX(-100%)
+
+.slide-bottom-enter, .slide-bottom-leave-to
+  transform: translateY(200px)
+
+.fade-enter, .fade-leave-to, .fade-long-enter, .fade-long-leave-to /* .fade-leave-active below version 2.1.8 */
+  opacity: 0
 
 </style>

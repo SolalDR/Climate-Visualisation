@@ -10,6 +10,7 @@ class Blob {
     this.counter = 0;
     this.geometry = new SphereGeometry( 3, 32, 32 );
     this.elevation = elevation;
+    this.init = false;
     var uniforms = {
       u_time: { type: "f", value: 0 },
       u_rat: { type: "f", value: 5.},
@@ -57,10 +58,10 @@ class Blob {
     if(this.animation != null) {
       var advance = Easing.easeOutQuad((this.counter - this.animation.start) / this.animation.duration);
       var value = this.animation.from + (this.animation.to - this.animation.from) * advance
+      this.material.uniforms.u_radius.value = value;
+      this.material2.uniforms.u_radius.value = value;
       if( advance >= 1 ) 
         this.animation = null;
-        this.material.uniforms.u_radius.value = value;
-        this.material2.uniforms.u_radius.value = value;
     }
   }
 

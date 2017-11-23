@@ -30,7 +30,7 @@ export default {
       if( this.decal && this.opacity ){
         return `transform: scale(${this.scale}) translateY(${this.translateY}px) rotateX(${this.rotateX}deg) rotateZ(${this.rotateZ}deg) translateZ(${this.decal}px); opacity:${this.opacity};`;
       }
-      return null
+      return null;
     },
 
     scale: {

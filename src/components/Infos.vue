@@ -1,11 +1,11 @@
 <template>
   <div class="infos">
-    <div v-if="active && co2" class="info info--white">
+    <div v-if="needInfoDetail && co2" class="info info--white">
       <p class="info__title">Production de CO<span class="exposant">2</span></p>
       <p class="info__value">{{ co2 }}KT / AN</p>
       <span class="info__mention">Depuis 1990</span>
     </div>
-    <div v-if="active && pop" class="info info--white">
+    <div v-if="needInfoDetail && pop" class="info info--white">
       <p class="info__title">Population</p>
       <p class="info__value">+{{ pop }}</p>
       <span class="info__mention">Depuis 1990</span>
@@ -24,8 +24,11 @@
 
 <script>
   export default {
-    props: ["active", "year", "elevation", "globeTemp"],
+    props: ["detailActive", "year", "elevation", "globeTemp"],
     computed: {
+      needInfoDetail: function(){
+        return this.detailActive && this.$store.state.currentCountry ? true : false;
+      },
       pop: function(){
         if(this.$store.state.currentCountry.pop){
           return this.numberWithSpaces(this.round(this.$store.state.currentCountry.pop[this.$store.state.year]*1000, 2))
@@ -41,7 +44,7 @@
         }
       },
       temperature: function(){
-        if( this.active && this.$store.state.currentCountry.temperatures ){
+        if( this.needInfoDetail && this.$store.state.currentCountry.temperatures ){
           return this.round(this.$store.state.currentCountry.temperatures[this.$store.state.year] - 0.01, 2)
         } else {
           return this.globeTemp;
@@ -50,7 +53,7 @@
     },
     methods: {
       round: function(val, number){
-        var fact = Math.pow(10, number);
+        let fact = Math.pow(10, number);
         return Math.floor(val*fact)/fact;
       },
       numberWithSpaces: function(x) {
@@ -64,6 +67,15 @@
 
 <style lang="sass">
 
+$font-size: 24px
+$font-size-small: 18px
+
+$wrapper: 350px
+$wrapper-small: 200px
+
+$padding: 20px
+$padding-small: 10px
+
 .infos
   position: fixed
   bottom: 0
@@ -73,28 +85,32 @@
   border: 2px solid black
   border-top: 0
   padding: 0
-  min-width: 350px
+  min-width: $wrapper
 
 .info
   padding: 20px
+
   &__title
     text-transform: uppercase
-    font-size: 24px
-    padding-top: 10px
+    font-size: $font-size
     margin: 0
+
   &--white
     border-top: 2px solid black
+    background-color: white
 
   &__value
     font-weight: bold
     padding-top: 5px
-    font-size: 24px
+    font-size: $font-size
     margin: 0
+
   &__mention
     color: black
     text-transform: uppercase
     margin-top: 5px
     display: block
+    font-size: $font-size-small
 
   &__year
     float: left
@@ -108,10 +124,12 @@
     text-align: center
     line-height: 25px
     padding-top: 25px
+    height: 70px
+
   &__temperature
     float: left
     margin: 0
-    padding: 25px
+    padding: 25px 0
     width: 40%
     text-align: center
     font-size: 20px
@@ -119,4 +137,23 @@
     border-top: 2px solid black
     height: 70px
     color: #dd2d2d
+    background-color: white
+
+@media screen and (max-width: 1360px)
+  .infos
+    min-width: $wrapper-small
+    bottom: 78px
+  .info
+    padding: 15px 20px
+    &__title, &__value
+      font-size: $font-size-small
+    &__year
+      font-size: 30px
+      width: 50%
+    &__temperature
+      width: 50%
+    &__mention
+      font-size: 13px
+
+
 </style>

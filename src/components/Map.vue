@@ -1,5 +1,5 @@
 <template>
-  <div class="map" v-if="load">
+  <div class="map" v-if="load" :style="style">
     <strate :type="'co2'" :rank="0" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
     <strate :type="'pop'" :rank="1" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
     <strate :type="'map'" :rank="2" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
@@ -31,8 +31,9 @@ export default {
   },
 
   computed: {
-    canvasClass: function(){
-      return this.detailActive ? "globe__container--hide" : "globe__container--display"
+    style: function(){
+      var value = -20 + (this.$store.state.year - 1990) / 110 * 40;
+      return `transform: rotateX(70deg) rotateZ(${value}deg)`
     }
   },
 }
@@ -42,7 +43,7 @@ export default {
 
 .map
   position: absolute
-  transform: rotateX(70deg) rotateZ(20deg)
+  transition: transform .1s
   transform-style: preserve-3d
   transform-origin: 170px 250px
   &__container

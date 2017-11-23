@@ -2,9 +2,13 @@
   <div class="detail">
     <h1 class="detail__title">{{ country.nameLong }}</h1>
     <button class="detail__back" @click="close"></button>
-    <div class="map__container">
-      <map3d :country="country"></map3d>
-    </div>
+
+    <transition name="fade" appear>
+      <div class="map__container">
+        <map3d :country="country"></map3d>
+      </div>
+    </transition>
+
   </div>
 </template>
 
@@ -63,5 +67,11 @@ export default {
     text-transform: uppercase
     font-weight: normal
     font-size: 60px
+
+@media screen and (max-width: 1360px)
+  .detail__title
+    font-size: 30px
+    margin-top: 10px
+
 
 </style>

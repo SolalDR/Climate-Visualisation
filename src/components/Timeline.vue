@@ -107,6 +107,7 @@ $range-label-width: 60px !default;
   height: 100px;
   box-sizing: border-box;
   border-top: 2px solid black;
+  background-color: white;
 }
 
 .range-slider__range {
@@ -194,5 +195,12 @@ $range-label-width: 60px !default;
 input::-moz-focus-inner,
 input::-moz-focus-outer {
   border: 0;
+}
+
+@media screen and (max-width: 1360px) {
+  .range-slider__container {
+    padding: 30px 15%;
+    height: 80px;
+  }
 }
 </style>

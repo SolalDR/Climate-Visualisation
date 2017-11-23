@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <router-view></router-view>
+    <transition appear name="router" mode="out-in">
+      <router-view></router-view>
+    </transition>
+
   </div>
 </template>
 
@@ -14,6 +17,10 @@ export default {
 </script>
 
 <style lang="sass">
+
 @import "style/leaflet.css";
 @import "style/app"
+
+
+
 </style>
