@@ -1,6 +1,6 @@
 <template>
   <div class="strate" :style="style" :class="'strate--'+type + ' strate--'+type+'-'+state ">
-    <v-map v-if="type !== 'co2'" ref="map" :zoom="country.zoom" :minZoom="country.zoom" :maxZoom="country.zoom" :center="[country.coordMap.lat, country.coordMap.lon]" :dragging="false" >
+    <v-map v-if="type !== 'co2'" ref="map" :zoom="zoom" :minZoom="zoom" :maxZoom="zoom" :center="[country.coordMap.lat, country.coordMap.lon]" :dragging="false" >
       <v-tilelayer url="http://{s}.tiles.wmflabs.org/bw-mapnik/{z}/{x}/{y}.png"></v-tilelayer>
       <v-geojson :geojson="parseGeo" :options="geoJsonOptions"></v-geojson>
     </v-map>
@@ -52,6 +52,7 @@ export default {
       rotateX: 0,
       rotateZ: 0,
       translateY: 0,
+      zoom: 3,
       geoJsonOptions: {
         style: {
           "color": "#ff7800",
@@ -113,6 +114,19 @@ export default {
       } else {
         this.removeRandomCircle(diff*-1, circles);
       }
+    },
+
+    calcZoomExpected: function(pathEl){
+      this.boundary = pathEl.getBBox();
+      var value = this.boundary.width/this.$el.offsetWidth
+      var count = 0
+      while(value < 1) {
+        value *= 2
+        count ++;
+      }
+      this.zoom = count
+      console.log(this.zoom)
+      this.$refs.map.mapObject.setZoom(this.zoom);
     },
 
     managePopulation: function() {

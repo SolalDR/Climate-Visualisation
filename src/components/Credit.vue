@@ -14,6 +14,16 @@
 
 <script>
 
+export default {
+  methods: {
+    close: function(){
+
+    },
+    open: function(){
+
+    }
+  }
+}
 
 </script>
 
@@ -34,6 +44,7 @@
     left: 40vh
     border: 0
     font-size: 20px
+    left: calc(50% - 20px)
 
   &-panel__button
 
