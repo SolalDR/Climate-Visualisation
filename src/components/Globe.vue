@@ -144,6 +144,7 @@ export default {
       this.mouse = new THREE.Vector2();
       this.earth.createCasterHelper();
       this.scene.add(this.earth.casterHelper);
+      console.log(this.raycaster)
     },
 
     initCastLine: function() {
@@ -210,14 +211,12 @@ export default {
         var intersects = this.raycaster.intersectObjects( this.scene.children );
         for(var i=0; i<intersects.length; i++) {
             if(intersects[i].object.name == "CasterTarget") {
-
                 this.target = new THREE.Vector3()
                 .copy(intersects[i].point)
                 .applyAxisAngle( new THREE.Vector3( 1, 0, 0 ), Math.PI/2 )
 
                 if(!this.cameraMover.animate)
                   this.rayCoord = this.earth.getGeoCoord(this.target);
-
                 break;
             }
         }
@@ -271,6 +270,10 @@ export default {
   left: 0
   text-align: center
   z-index: 999
+
+.start
+  width: 100%
+  height: 100vh
 
 .globe
   &__container

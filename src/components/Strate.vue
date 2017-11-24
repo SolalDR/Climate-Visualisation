@@ -105,7 +105,6 @@ export default {
     },
 
     updateCircles(){
-      console.log("Update circle")
       var currentPop = this.country.pop ? this.country.pop[this.value] : 0;
       var circles = this.svg.getElementsByTagName("circle");
       var diff = Math.floor(currentPop/this.rat) - circles.length;

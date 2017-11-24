@@ -98,6 +98,7 @@ h1
     margin-top: 20px
     display: inline-block
     position: relative
+    transition: .2s
     &::before
       content: ""
       height: 50px
@@ -111,6 +112,12 @@ h1
       background-size: 50%
       background-position: center
       background-repeat: no-repeat
+      transition: .4s ease
+      background-color: black
+    &:hover
+      &::before
+        left: 10px
+
 
 #bg_frame
   position: absolute

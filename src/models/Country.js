@@ -33,13 +33,8 @@ class Country {
 	}
 
 	concatCoords() {
-		console.log(this.geometry.type);
 		this.geometry.coords = []
-		//if( this.geometry.type == "MultiPolygon") {
-			this.geometry.coords = this.loopCoords(this.geometry.coordinates);
-		//}
-
-
+		this.geometry.coords = this.loopCoords(this.geometry.coordinates);
 		this.nbPoint = this.geometry.coords.length;
 	}
 
