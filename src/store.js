@@ -16,30 +16,10 @@ const state = {
   year: null,
   currentCountry: null,
   limits: {
-    co2: [-33.4, 149, 149 + 33.4],
-    co2Global: [-33.4, 149]
+    co2: [-33.4, 149, 149 + 33.4]
   }
 }
 
-const mutations = {
-  increment (state) {
-    state.count++
-  }
-}
-
-const actions = {
-  increment: ({ commit }) => commit('increment')
-}
-
-const getters = {
-  countPlural: ({ count }) => Math.min(count, 2)
-}
-
-var store =  new Vuex.Store({
-  state,
-  mutations,
-  actions,
-  getters
-})
+var store =  new Vuex.Store({ state })
 
 export default store;

@@ -1,8 +1,10 @@
 <template>
   <div class="detail">
     <h1 class="detail__title">{{ country.nameLong }}</h1>
-    <button class="detail__back" @click="close"></button>
 
+    <transition name="slide-right">
+      <button class="detail__back" @click="close"></button>
+    </transition>
     <transition name="fade" appear>
       <div class="map__container">
         <map3d :country="country"></map3d>
@@ -56,11 +58,19 @@ export default {
   box-sizing: border-box
   &__back
     position: absolute
-    top: 20px
-    right: 20px
-    height: 50px
-    width: 50px
-    background-color: #CCC
+    top: 30px
+    right: 30px
+    height: 30px
+    width: 30px
+    background-color: white
+    background-image: url('./../assets/close.png')
+    background-position: center
+    background-repeat: no-repeat
+    background-size: contain
+    border: 0
+    transition: all .4s
+    &:hover
+      transform: rotate(45deg)
 
   &__title
     margin-top: 30px

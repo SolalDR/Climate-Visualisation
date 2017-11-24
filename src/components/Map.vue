@@ -1,18 +1,21 @@
 <template>
-  <div class="map" v-if="load" :style="style">
-    <strate :type="'co2'" :rank="0" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
-    <strate :type="'pop'" :rank="1" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
-    <strate :type="'map'" :rank="2" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
+  <div>
+    <clouds></clouds>
+    <div class="map" v-if="load" :style="style">
+      <strate :type="'pop'" :rank="1" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
+      <strate :type="'map'" :rank="2" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate>
+    </div>
   </div>
 </template>
-
+<!-- <strate :type="'co2'" :rank="0" :total="2" :value="$store.state.year" :country="country" :geojson="geojson"></strate> -->
 <script>
 
 import Strate from "./Strate";
+import Clouds from "./Cloud";
 
 export default {
 
-  components: { Strate },
+  components: { Strate, Clouds },
   props: ["country"],
 
   data: function () {
@@ -43,7 +46,7 @@ export default {
 
 .map
   position: absolute
-  transition: transform .1s
+  //transition: transform .1s
   transform-style: preserve-3d
   transform-origin: 170px 250px
   &__container

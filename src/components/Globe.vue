@@ -4,18 +4,16 @@
         <p id="warning" v-if="warning">{{ warning }}</p>
       </transition>
 
-      <transition name="fade" appear v-on:after-enter="firstRender">
-        <div class="globe__container" :class="canvasClass">
-          <p id="coord-display">{{ coordsDisplay }}</p>
-          <div id="canvas" class="globe" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
-        </div>
-      </transition>
+      <div class="globe__container" :class="canvasClass">
+        <p id="coord-display">{{ coordsDisplay }}</p>
+        <div id="canvas" class="globe" @mousedown="onMouseDown" @mouseup="onMouseUp"></div>
+      </div>
 
       <transition name="slide-left" appear>
         <infos :detailActive="detailActive" :elevation="elevation" :globeTemp="temperature" :year="year"></infos>
       </transition>
 
-      <transition name="fade-long" appear>
+      <transition name="fade-long" mode="out-in">
         <detail v-if="detailActive && cd" :cd="cd" :coord="detailCoord" @close="hideDetail"></detail>
       </transition>
 
@@ -70,30 +68,21 @@ export default {
 
   mounted: function () {
     this.counter = 0;
+    this.now = Date.now();
     this.canvas = this.$el.querySelector( '#canvas' )
     this.initScene();       // scene, renderer, camera & control
     this.initEarth();       // earth
-    this.initUi();          // HTML Composant
     this.initEvents();      // Events (mousemove, resize)
     this.initRaycaster();   // Raycaster
-    this.now = Date.now();
     this.updateFromYear(2017)
-
+    this.renderer.animate( this.render.bind(this) );
   },
 
   methods: {
 
-    firstRender: function() {
-      this.renderer.animate( this.render.bind(this) );
-    },
-
     /////////////////////////////////////
     //      INITIALISATION
     /////////////////////////////////////
-
-    initUi: function() {
-        this.coordDisplay = document.getElementById("coord-display");
-    },
 
     initEvents: function() {
         window.addEventListener('resize', this.onWindowResize.bind(this), false);
@@ -129,7 +118,7 @@ export default {
         this.$store.state.firstTime = false;
         this.earth.on('noiseEnd', () => {
           this.blob.toScale(1, 10);
-          this.init = true;
+          this.blob.init = true;
         })
       }
     },
@@ -148,14 +137,13 @@ export default {
       this.camera.lookAt(new THREE.Vector3());
       this.controls = new OrbitControls( this.camera );
       this.controls.enablePan = false;
-
     },
 
     initRaycaster: function() {
-        this.raycaster = new THREE.Raycaster();
-        this.mouse = new THREE.Vector2();
-        this.earth.createCasterHelper();
-        this.scene.add(this.earth.casterHelper);
+      this.raycaster = new THREE.Raycaster();
+      this.mouse = new THREE.Vector2();
+      this.earth.createCasterHelper();
+      this.scene.add(this.earth.casterHelper);
     },
 
     initCastLine: function() {
@@ -296,22 +284,5 @@ export default {
       transform: translateY(0)
     &--hide
       transform: translateY(-100%)
-
-
-.slide-left-enter-active, .slide-bottom-enter-active, .slide-left-leave-active, .slide-bottom-leave-active, .fade-enter-active, .fade-leave-active
-  transition: .5s
-
-.fade-long-enter-active, .fade-long-enter-active
-  transition: 2s
-
-
-.slide-left-enter, .slide-left-leave-to /* .fade-leave-active below version 2.1.8 */
-  transform: translateX(-100%)
-
-.slide-bottom-enter, .slide-bottom-leave-to
-  transform: translateY(200px)
-
-.fade-enter, .fade-leave-to, .fade-long-enter, .fade-long-leave-to /* .fade-leave-active below version 2.1.8 */
-  opacity: 0
 
 </style>

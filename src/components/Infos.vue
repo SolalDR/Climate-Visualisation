@@ -1,15 +1,16 @@
 <template>
   <div class="infos">
-    <div v-if="needInfoDetail && co2" class="info info--white">
-      <p class="info__title">Production de CO<span class="exposant">2</span></p>
-      <p class="info__value">{{ co2 }}KT / AN</p>
-      <span class="info__mention">Depuis 1990</span>
-    </div>
-    <div v-if="needInfoDetail && pop" class="info info--white">
-      <p class="info__title">Population</p>
-      <p class="info__value">+{{ pop }}</p>
-      <span class="info__mention">Depuis 1990</span>
-    </div>
+    <transition-group name="list" tag="div">
+      <div v-if="needInfoDetail && co2" class="info info--white" v-bind:key="1">
+        <p class="info__title">Production de CO<span class="exposant">2</span></p>
+        <p class="info__value">{{ co2 }}KT / AN</p>
+        <span class="info__mention">Depuis 1990</span>
+      </div>
+      <div v-if="needInfoDetail && pop" class="info info--white" v-bind:key="2">
+        <p class="info__title">Population</p>
+        <p class="info__value">{{ pop }}</p>
+      </div>
+    </transition-group>
     <div class="info info--white">
       <p class="info__title">Montée des eaux</p>
       <p class="info__value blue">+{{ elevation }}MM</p>
@@ -66,12 +67,19 @@
 </script>
 
 <style lang="sass">
+.list-enter-active, .list-leave-active
+  transition: all 1s
+
+.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */
+  transform: translateX(-100%)
+
+
 
 $font-size: 24px
 $font-size-small: 18px
 
 $wrapper: 350px
-$wrapper-small: 200px
+$wrapper-small: 230px
 
 $padding: 20px
 $padding-small: 10px
@@ -82,21 +90,21 @@ $padding-small: 10px
   left: 0
   z-index: 999
   bottom: 98px
-  border: 2px solid black
+
   border-top: 0
   padding: 0
-  min-width: $wrapper
+  width: $wrapper
 
 .info
   padding: 20px
-
+  border: 2px solid black
   &__title
     text-transform: uppercase
     font-size: $font-size
     margin: 0
 
   &--white
-    border-top: 2px solid black
+    border-bottom: 0px solid black
     background-color: white
 
   &__value
@@ -134,6 +142,7 @@ $padding-small: 10px
     text-align: center
     font-size: 20px
     font-weight: bold
+    border-right: 2px solid black
     border-top: 2px solid black
     height: 70px
     color: #dd2d2d
@@ -141,7 +150,7 @@ $padding-small: 10px
 
 @media screen and (max-width: 1360px)
   .infos
-    min-width: $wrapper-small
+    width: $wrapper-small
     bottom: 78px
   .info
     padding: 15px 20px

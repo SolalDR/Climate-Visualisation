@@ -28,37 +28,14 @@ export default {
     },
     style: function(){
       if( this.decal && this.opacity ){
-        return `transform: scale(${this.scale}) translateY(${this.translateY}px) rotateX(${this.rotateX}deg) rotateZ(${this.rotateZ}deg) translateZ(${this.decal}px); opacity:${this.opacity};`;
+        return `transform: translateZ(${this.decal}px); opacity:${this.opacity};`;
       }
       return null;
     },
 
-    scale: {
-      get: function(){
-        if(this.type == 'co2') {
-          var prop = this.$store.state.limits.co2[2] / (this.value - this.$store.state.limits.co2[0]) * this.country.pop[this.$store.state.year]/10000;
-          return Math.min(2.5, Math.max(0.5, prop));
-        }
-        return 1;
-      }
-    },
-
     opacity: {
       get:function(){
-
-        if(this.type == 'co2') {
-
-          return this.$store.state.limits.co2[2] / (this.value - this.$store.state.limits.co2[0]) * 5;
-
-        } else {
-          if ( this.compressState ) {
-            return 0;
-          } else {
-            return 1;
-          }
-        }
-
-        return null
+        return this.compressState ? 0 : 1;
       }
     }
   },
@@ -88,8 +65,7 @@ export default {
 
   mounted: function() {
     this.decompress();
-    this.toggleState();
-    setInterval( this.toggleState.bind(this), 4000)
+
     if(this.$refs.map)
       this.$refs.map.mapObject.dragging.disable();
 
@@ -99,16 +75,9 @@ export default {
         this.updateCircles()
       })
     }
-    if(this.type == "co2") {
-      this.manageCO2();
-    }
   },
 
   methods: {
-
-    toggleState(){
-      this.state = this.state == 10 ? 1 : this.state+1;
-    },
 
     removeRandomCircle: function(n, circles) {
       var circle, rank;
@@ -135,6 +104,7 @@ export default {
     },
 
     updateCircles(){
+      console.log("Update circle")
       var currentPop = this.country.pop ? this.country.pop[this.value] : 0;
       var circles = this.svg.getElementsByTagName("circle");
       var diff = Math.floor(currentPop/this.rat) - circles.length;
@@ -175,12 +145,6 @@ export default {
       this.updateCircles();
     },
 
-    manageCO2: function() {
-      this.rotateX = -60
-      this.rotateZ = -10
-      this.translateY = -50
-    },
-
     compress: function() {
       this.space = 10;
       this.compressState = true
@@ -210,56 +174,17 @@ export default {
   transform: translateZ(0px)
   background-color: transparent
 
-  &--pop, &--co2
+  &:not(.strate--map)
+    background-color: rgba(0, 0, 0, .03)
     .leaflet-tile-pane
       opacity: 0
-  &--map
 
-  &--co2
-    //transform: translateZ(100px) rotateX(-70deg) rotateZ(-7deg) !important
-    opacity: 1
-    background-color: transparent
-    height: 200px
-    width: 400px
-    background-image: url('./../assets/nuage1.png')
-    background-repeat: no-repeat
-    background-size: contain
-    background-position: center
-    opacity: 0.3
-    &::after, &::before
-      content: ""
-      position: absolute
-      top: 0
-      left: 0
-      width: 100%
-      height: 100%
-      background-repeat: no-repeat
-      background-size: contain
-      background-position: center
-      transition: all 10s
-    &::after
-      background-image: url('./../assets/nuage2.png')
-    &::before
-      background-image: url('./../assets/nuage2.png')
-
-@for $i from 1 to 10
-  .strate--co2-#{$i}
-    &::after
-      top: random(50) + px
-      left: random(80) + px
-    &::before
-      top: random(50) + px
-      left: random(80) + px
-
-
-.leaflet-container
-  background-color: transparent !important
-
-.leaflet-control-zoom
-  display: none
-
-.leaflet-control-container
-  display: none
-
+.leaflet
+  &-container
+    background-color: transparent !important
+  &-control-zoom
+    display: none
+  &-control-container
+    display: none
 
 </style>
