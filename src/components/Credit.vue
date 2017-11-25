@@ -26,9 +26,9 @@
             </div>
 
             <div class="credit__block">
-              <h2 class="credit__title">Sources</h2>
+              <h2 class="credit__title">Design</h2>
               <div>
-                <a class="credit__link" target="_blank" href="http://data.worldbank.org">Robin Blanc-Beyne</a>
+                <a class="credit__link" target="_blank" href="http://robn.fr/">Robin Blanc-Beyne</a>
               </div>
             </div>
           </div>
@@ -65,6 +65,7 @@ export default {
       this.display = false
       this.move();
     },
+
     open: function(){
       if(!this.isMoving) {
         this.display = true
@@ -84,6 +85,7 @@ export default {
   right: 0
   width: 400px
   height: calc(100vh - 80px)
+  background-color: white
   &-panel__button
     height: 40px
     width: 40px
