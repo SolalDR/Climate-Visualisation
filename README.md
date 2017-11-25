@@ -1,6 +1,6 @@
-# Earth Data-visualisation
+# Climate Visualisation
 
-> A Vue.js project
+A vue.js & three.js project. This 3D data-visualization presents the evolution of the future climate and its consequences in the world.
 
 ## Build Setup
 
